@@ -49,9 +49,17 @@ var internationalizeButton = '<button>Internationalize</button>';
 var googleMap = '<div id="map"></div>';
 
 
-/*
-The International Name challenge in Lesson 2 where you'll create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
-*/
+// 大写last name
+function inName(name) {
+  name = name.trim.split(" ");
+  console.log(name);
+  name[1] = name[1].toUpperCase();
+  name[0] = name[0].slice(0,1).toUpperCase() + name[0].slice(1).toLowerCase();
+
+  return name[0] +" "+ name[1];
+}
+$("#main").append(internationalizeButton);
+
 $(document).ready(function() {
   $('button').click(function() {
     var iName = inName() || function(){};
