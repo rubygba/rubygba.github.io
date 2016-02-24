@@ -12,7 +12,7 @@ var bio = {
     "s1", "s2", "s3", "s4", "s5"
   ],
   "bioPic": "images/fry.jpg"
-}
+};
 
 var education = {
   "schools": [
@@ -34,7 +34,7 @@ var education = {
       "level": "Familiar"
     }
   ]
-}
+};
 
 var work = {
   "jobs": [
