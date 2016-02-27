@@ -6,48 +6,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Resume</title
   <link href="css/style.css" rel="stylesheet">
-  <script src="js/jQuery.js"></script>
 </head>
 
 <body>
-  <canvas id="c" width="200" height="200"></canvas>
-  <script>
-    var c = document.querySelector('#c');
-    var ctx = c.getContext('2d');
+  <div>
+    <input type="file" id="file" />
+  </div>
+  <div id="container" style="display: flex;">
+    <canvas id="c" width="500" height="300"></canvas>
+    <div>
+      <span>上侧</span><br/>
+      <input id="topText" type="text"><br/>
+      <span>下侧</span><br/>
+      <input id="bottomText" type="text">
+      <button id="saveButton">保存</button>
+    </div>
+  <div>
 
-    var image = new Image();
 
-    image.onload = function() {
-      console.log("读取图片");
-      ctx.drawImage(image, 0, 0, c.width, c.height);
-      // var imageUrl = c.toDataURL();
-      // window.open(imageUrl);
-      ctx.fillRect(0, 0, 50, 50);
-      ctx.clearRect(0,0,25,25);
-
-      ctx.strokeStyle = "green";
-      ctx.lineWidth = 2;
-      ctx.strokeRect(100, 100, 100, 100);
-
-      ctx.beginPath();
-      ctx.moveTo(75, 75); // start
-      ctx.lineTo(125, 75);
-      ctx.lineTo(125, 125);
-      ctx.lineTo(75, 75); // end
-      ctx.fillStyle = "blue";
-      ctx.fill();
-
-      ctx.font = "36pt Impact";
-      ctx.textAlign = "center";
-      ctx.fillStyle = "white";
-      ctx.fillText("表情包 MEMES!", c.width/2, 40);
-
-      ctx.strokeStyle = "black";
-      ctx.lineWidth = 3;
-      ctx.strokeText("表情包 MEMES!", c.width/2, 40);
-    }
-
-    image.src = "images/fry.jpg";
-  </script>
+  <script src="js/meme.js"></script>
 </body>
 </html>
