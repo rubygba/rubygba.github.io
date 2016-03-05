@@ -1,3 +1,4 @@
+// 绑定<input>text输入
 function textChangeListener(evt) {
   var id = evt.target.id; // 获取<input> id
   var text = evt.target.value;
@@ -11,6 +12,7 @@ function textChangeListener(evt) {
   reDrawMeme(window.imageSrc, window.topText, window.bottomText);
 }
 
+// 绘图函数
 function reDrawMeme(image, top, bottom) {
   var c = document.querySelector('canvas');
   var ctx = c.getContext('2d');
@@ -22,15 +24,15 @@ function reDrawMeme(image, top, bottom) {
   ctx.textAlign = "center";
   ctx.fillStyle = "white";
   ctx.strokeStyle = "black";
-  ctx.lineWidth = 3;
+  ctx.lineWidth = 2;
   if (top !== null) {
-  ctx.fillText(top, c.width/2, 40);
-  ctx.strokeText(top, c.width/2, 40);
-}
+    ctx.fillText(top, c.width/2, 40);
+    ctx.strokeText(top, c.width/2, 40);
+  }
   if (bottom !== null) {
-  ctx.fillText(bottom, c.width/2, c.height);
-  ctx.strokeText(bottom, c.width/2, c.height);
-}
+    ctx.fillText(bottom, c.width/2, c.height);
+    ctx.strokeText(bottom, c.width/2, c.height);
+  }
 
   // 缺角方形
   ctx.fillRect(0, 0, 50, 50);
@@ -68,14 +70,13 @@ image.onload = function() {
   ctx.lineWidth = 3;
   ctx.strokeText("表情包 MEMES!", c.width/2, 40);
 };*/
-
 //image.src = "images/fry.jpg";
 
 function saveFile() {
   window.open(document.querySelector('canvas').toDataURL()); // ??
 }
 
-// ??????
+// 绑定<input>文件选择
 function handleFileSelect(evt) {
   var file = evt.target.files[0]; // ??
 
@@ -94,6 +95,7 @@ function handleFileSelect(evt) {
   reader.readAsDataURL(file);
 }
 
+// 全局变量
 window.topText = "";
 window.bottomText = "";
 var input1 = document.getElementById('topText');
