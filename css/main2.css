@@ -1,12 +1,17 @@
 body {
-  padding-top: 60px;
-  padding-bottom: 50px;
+  padding-top: 50px;
+  background-color: #f5f8fa;
 }
 
 h1, h3 {
   font-family: 'Lato', sans-serif;
   color: #5e5e5e;
   font-weight: lighter;
+}
+
+body>.container {
+  padding-bottom: 50px;
+  background-color: #fff;
 }
 
 .listItem {
@@ -32,6 +37,7 @@ h1, h3 {
   }
 }
 
+/* 轮播图左箭头 */
 .picLeft {
   width: 50px;
   height: 100%;
@@ -90,6 +96,7 @@ h1, h3 {
 
 .modal img {
   margin-bottom: 10px;
+  max-height: 360px;
 }
 
 footer span {

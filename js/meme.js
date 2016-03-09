@@ -66,6 +66,7 @@ var initDraw = function() {
     }
   }
 };
+
 var saveFile = function() {
   window.open(document.querySelector('canvas').toDataURL()); // ??
 };
