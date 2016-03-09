@@ -1,29 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Resume</title
-  <link href="css/style.css" rel="stylesheet">
+  <title>H5</title>
+  <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+  </script>
+
+  <link href="css/h5.css" rel="stylesheet">
 </head>
 
 <body>
-  <div>
-    <input type="file" id="file" />
-  </div>
-  <div id="container" style="display: flex;">
-    <canvas id="c" width="500" height="300">您的浏览器不支持canvas</canvas>
-    <div>
-      <span>上侧</span><br/>
-      <input id="topText" type="text"><br/>
-      <span>下侧</span><br/>
-      <input id="bottomText" type="text">
-      <button id="saveButton">保存</button>
+<div class="container">
+
+  <div id="memeCanvas" class="row thumbnail">
+    <div class="col-md-3 col-xs-12">
+      <input id="file" type="file" class="btn btn-primary btn-block">
+      <span>上侧文字</span>
+      <input id="topText" class="btn-block" type="text"><br>
+      <span>下侧文字</span>
+      <input id="bottomText" class="btn-block" type="text">
+      <button id="saveButton" class="btn btn-info btn-block">保存</button>
     </div>
-  <div>
+    <canvas id="c" class="col-md-9 col-xs-12" width="960" height="480">您的浏览器不支持canvas</canvas>
+  </div>
 
+  <h4 class="">瀑布流图库</h4>
+  <!-- ul.class有padding影响 span无换行 -->
+  <div id="memeGallery" class="grid row">
+    <div class="grid-item col-md-3 col-xs-4">
+      <img class="img-responsive" src="pic/1.jpg" alt="">
+      <p>222</p>
+    </div>
+    <div class="grid-item col-md-3 col-xs-4">
+      <img class="img-responsive" src="pic/2.jpg" alt="">
+      <p>333</p>
+    </div>
 
-  <script src="js/meme.js"></script>
+    <div class="grid-item col-md-3 col-xs-4">
+      <img class="img-responsive" src="pic/1.jpg" alt="">
+      <p>222</p>
+    </div>
+    <div class="grid-item col-md-3 col-xs-4">
+      <img class="img-responsive" src="pic/2.jpg" alt="">
+      <p>333</p>
+    </div>
+  </div>
+
+</div>
+  <script src="js/masonry.pkgd.min.js" type="text/javascript"></script>
+  <script src="js/meme.js" type="text/javascript"></script>
 </body>
 </html>
