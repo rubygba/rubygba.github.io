@@ -2,7 +2,6 @@ body {
   padding-top: 50px;
   background-color: #f5f8fa;
 }
-
 h1, h3 {
   font-family: 'Lato', sans-serif;
   color: #5e5e5e;
@@ -10,6 +9,10 @@ h1, h3 {
 }
 h4 {
   margin-bottom: 0;
+}
+a {
+  display: block;
+  overflow: hidden;
 }
 
 body>.container {
