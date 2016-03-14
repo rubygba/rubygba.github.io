@@ -8,6 +8,9 @@ h1, h3 {
   color: #5e5e5e;
   font-weight: lighter;
 }
+h4 {
+  margin-bottom: 0;
+}
 
 body>.container {
   padding-bottom: 35px;
@@ -34,9 +37,13 @@ body>.container {
   }
   h4 {
     font-size: 12px;
+    margin-top: 5px;
   }
   p {
     font-size: 11px;
+  }
+  #myList a {
+    font-size: 10px;
   }
 }
 
