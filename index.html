@@ -70,7 +70,7 @@
             <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
             &nbsp;2016-3-1&nbsp;&nbsp;|&nbsp;
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-            &nbsp;24:00:00&nbsp;&nbsp;|&nbsp;
+            &nbsp;<span id="i">24:00:00</span>&nbsp;&nbsp;|&nbsp;
           </small>
           GBA
         </h4>
@@ -221,5 +221,28 @@
   </div>
 
 </div>
+
+<script type="text/javascript">
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  // add a zero in front of numbers<10
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('i').innerHTML = h + ":" + m + ":" + s;
+  t = setTimeout('startTime()', 500);
+}
+
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+window.onload = startTime;
+</script>
 </body>
 </html>
