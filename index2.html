@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>关于我</title>
+  <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="css/main2.css">
+</head>
+
+<body>
+<div class="container">
+
+  <!-- 导航bar -->
+  <nav class="navbar navbar-default navbar-fixed-top topHeader" role="navigation">
+    <div class="container">
+
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Portfolio</a>
+        <!-- 移动端 按键 -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tagList">
+          <span class="sr-only">菜单</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <!-- 菜单内容 -->
+      <div id="tagList" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">首页</a></li>
+          <li class="disabled"><a href="#">博客</a></li>
+          <li><a href="resume.html">关于</a></li>
+          <li><a href="test.html">练习</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+               作品
+               <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+               <li class="disabled"><a href="#">1. UI原型</a></li>
+               <li><a href="h5.html">2. 表情包生成器</a></li>
+               <li><a href="phoneApp.html">3. APP原型</a></li>
+               <li class="divider"></li>
+               <li class="disabled"><a href="#">分离的链接1</a></li>
+               <li class="divider"></li>
+               <li class="disabled"><a href="#">分离的链接2</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://github.com/rubygba">链接</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- 标题 -->
+  <header class="topTitle"> <div class="row">
+        <!-- <img class="img-responsive" src="http://placehold.it/100x100" alt="logo"> -->
+      <div class="col-md-12 text-center text-uppercase">
+        <h1>项目文件夹</h1>
+        <h4>
+          <small>
+            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+            &nbsp;2016-3-1&nbsp;&nbsp;|&nbsp;
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+            &nbsp;<span id="i">24:00:00</span>&nbsp;&nbsp;|&nbsp;
+          </small>
+          GBA
+        </h4>
+      </div>
+    </div>
+  </header>
+
+  <!-- hr -->
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+    </div>
+  </div>
+  <!-- 轮播 -->
+  <div id="myCarousel" class="carousel slide">
+   <ol id="carouselBar" class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li>
+   </ol>
+   <div class="carousel-inner">
+      <div class="item active">
+        <img src="pic/s4.png" alt="4th slide">
+        <p>移动端 APP原型</p>
+      </div>
+      <div class="item">
+         <img src="pic/s2.png" alt="Second slide">
+         <p>移动端 H5表情包生成器</p>
+      </div>
+      <div class="item">
+        <img src="pic/2c.png" alt="First slide">
+        <p>PC端 H5表情包生成器</p>
+      </div>
+      <div class="item">
+         <img src="pic/s3.png" alt="Third slide">
+         <p>javaScript DOM操作练习</p>
+      </div>
+   </div>
+   <!-- 轮播导航 -->
+   <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+     <span class="picLeft"></span>
+   </a>
+   <a class="carousel-control right" href="#myCarousel" data-slide="next">
+     <span class="picRight"></span>
+   </a>
+  </div>
+
+  <!-- 图例 -->
+  <div class="row">
+    <div class="col-md-12">
+      <h3>前端项目</h3>
+    </div>
+  </div>
+  <div id="myList" class="row">
+
+    <div class="listItem col-md-4 col-xs-6">
+      <a href="#" class="" data-toggle="modal" data-target="#project3">
+        <img class="img-responsive img-thumbnail" src="pic/4a.png" alt="third project">
+      </a>
+      <h4>WebApp</h4>
+      <a href="phoneApp.html">http://rubygba.github.io/phoneApp.html</a>
+    </div>
+    <div class="listItem col-md-4 col-xs-6">
+      <a href="#" class="" data-toggle="modal" data-target="#project2">
+        <img class="img-responsive img-thumbnail" src="pic/2a.png" alt="second project">
+      </a>
+      <h4>H5画布</h4>
+      <a href="h5.html">http://rubygba.github.io/h5.html</a>
+    </div>
+    <div class="listItem col-md-4 col-xs-6">
+      <a href="#" class="" data-toggle="modal" data-target="#project1">
+      	<img class="img-responsive img-thumbnail" src="pic/1s.jpg" alt="first project">
+      </a>
+      <h4>切图基础</h4>
+      <a>http://github.com/..</a>
+    </div>
+
+  </div>
+
+  <!-- 页脚 -->
+  <footer id="" class="footer">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <hr>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing.
+        </p>
+      </div>
+      <div class="col-md-12">
+        <span class="author" itemprop="copyrightHolder">Copyright @2016 | All Rights Reserved | GBA</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal1 -->
+  <div class="modal fade" id="project1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModadl1">UI原型构建</h4>
+        </div>
+        <div class="modal-body">
+          <img class="img-responsive center-block" src="pic/1b.png">
+          <p>将PDF、PSD格式的设计图，用标准HTML5、CSS构建为UI原型。使用了Bootstrap框架进行排版、jQuery提供交互功能，以PC端浏览为主，也为移动端提供了一定的响应式兼容性。</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal2 -->
+  <div class="modal fade" id="project2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModal2">HTML5实践</h4>
+        </div>
+        <div class="modal-body">
+          <img class="img-responsive center-block" src="pic/2b.png">
+          <p>使用HTML5的canvas为图片添加文字，支持导出与下载。使用masonry js库，配合Bootstrap实现瀑布流图库布局，提供一些原图。</p>
+          <a href="h5.html">http://rubygba.github.io/h5.html</a>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal3 -->
+  <div class="modal fade" id="project3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="myModal3">APP前端实践</h4>
+        </div>
+        <div class="modal-body">
+          <img class="img-responsive center-block" src="pic/4b.jpg">
+          <p>使用HTML5、CSS3制作移动端限定的UI界面。考虑APP的界面结构，并使用动画丰富表现。</p>
+          <a href="phoneApp.html">http://rubygba.github.io/phoneApp.html</a>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+function startTime() {
+  var today = new Date();
+  var h = today.getHours();
+  var m = today.getMinutes();
+  var s = today.getSeconds();
+  // add a zero in front of numbers<10
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('i').innerHTML = h + ":" + m + ":" + s;
+  t = setTimeout('startTime()', 500);
+}
+
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+window.onload = startTime;
+</script>
+</body>
+</html>
