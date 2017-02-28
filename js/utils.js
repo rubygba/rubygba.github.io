@@ -17,6 +17,7 @@
   }
 
   var DEFAULT_DATASET_SIZE = 7;
+  var DEFAULT_R_RATE = 5;
 
   var addedCount = 0;
   var color = Chart.helpers.color;
@@ -34,206 +35,206 @@
     datasets: [{
       label: "My 0 dataset",
       backgroundColor: color(window.chartColors.red).alpha(0.75).rgbString(),
-      borderColor: window.chartColors.red,
+      borderColor: color(window.chartColors.red).alpha(0.75).rgbString(),
       borderWidth: 1,
       data: [{
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }]
     }, {
       label: "My 1 dataset",
       backgroundColor: color(window.chartColors.orange).alpha(0.75).rgbString(),
-      borderColor: window.chartColors.orange,
+      borderColor: color(window.chartColors.orange).alpha(0.75).rgbString(),
       borderWidth: 1,
       data: [{
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }]
     }, {
       label: "My 2 dataset",
       backgroundColor: color(window.chartColors.yellow).alpha(0.75).rgbString(),
-      borderColor: window.chartColors.yellow,
+      borderColor: color(window.chartColors.yellow).alpha(0.75).rgbString(),
       borderWidth: 1,
       data: [{
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }]
     }, {
       label: "My 3 dataset",
       backgroundColor: color(window.chartColors.green).alpha(0.75).rgbString(),
-      borderColor: window.chartColors.green,
+      borderColor: color(window.chartColors.green).alpha(0.75).rgbString(),
       borderWidth: 1,
       data: [{
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }]
     }, {
       label: "My 4 dataset",
       backgroundColor: color(window.chartColors.blue).alpha(0.75).rgbString(),
-      borderColor: window.chartColors.blue,
+      borderColor: color(window.chartColors.blue).alpha(0.75).rgbString(),
       borderWidth: 1,
       data: [{
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }]
     }, {
       label: "My 5 dataset",
       backgroundColor: color(window.chartColors.purple).alpha(0.75).rgbString(),
-      borderColor: window.chartColors.purple,
+      borderColor: color(window.chartColors.purple).alpha(0.75).rgbString(),
       borderWidth: 1,
       data: [{
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }, {
         x: randomScalingFactor(),
         y: randomScalingFactor(),
-        r: Math.abs(randomScalingFactor()) / 5,
+        r: Math.abs(randomScalingFactor()) / DEFAULT_R_RATE,
       }]
     }]
   };

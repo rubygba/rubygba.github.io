@@ -3,8 +3,10 @@
 
 <head>
   <title>Bubble Chart</title>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=0">
+  <meta name="email" content="randyrubyy@gmail.com">
   <script src="js/Chart.bundle.min.js"></script>
-  <style type="text/css" src="css/gb-webstrap.css"></style>
+  <link rel="stylesheet" href="css/gb-webstrap.css">
   <style type="text/css">
   canvas {
     -moz-user-select: none;
@@ -26,28 +28,72 @@
     left: 0;
     pointer-events: none;
   }
-  body {
+  h1 {
+    font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    margin: 15px 0;
+    left: 4px;
+  }
+  h2 {
+    color: #999;
+    font-weight: normal;
+    font-size: 16px;
+    /*letter-spacing: .12em;*/
+    letter-spacing: 3px;
+    margin-bottom: 23px;
+    left: 3px;
+  }
+  p {
+    font-size: 15px;
+    line-height: 1.5em;
     margin: 0;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+  }
+  a {
+    color: #999;
+    text-decoration: none;
+    transition: color .2s ease;
+  }
+  a:hover {
+    color: #333;
+    font-weight: bold;
+  }
+  hr {
+    margin: 15px auto;
+    border: 0;
+    border-top: 1px solid #999;
   }
   .main {
     /*background-color: hsla(0, 0%, 100%, 1);*/
-    box-shadow: 0 0 3px #000;
+    user-select: none;
+    box-shadow: 0px 2px 5px #666;
     /*让模糊背景和canvas一致，基于body绝对定位*/
     position: relative;
     overflow: hidden;
-    width: 380px;
-    height: 300px;
+    width: 360px;
+    height: 360px;
     padding: 30px;
     margin: 0 auto;
+    border-radius: 5px;
   }
   .main {
     position: absolute;
-    top: 0;
+    top: 50%;
     right: 0;
     bottom: 0;
     left: 0;
+    margin-top: -180px;
     background-color: hsla(0, 0%, 100%, 1);
     z-index: -1;
+  }
+  .footer {
+    font-family: 'Menlo', 'Consolas', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
   }
   #main-bg {
     position: absolute;
@@ -70,37 +116,45 @@
   <!-- <button id="randomizeData">Randomize Data</button> -->
   <div class="main" id="main">
     <div id="main-bg"></div>
-    <h1>rubygba的个人网站</h1>
+    <h1>GBA的个人网站</h1>
     <h2>rubygba's personal website</h2>
 
     <div class="link-list">
-      <ul>
-        <li>
-          <a href="./blog">
-            博客
-          </a>
-        </li>
-        <li>
-          <a href="">
-            实验
-          </a>
-        </li>
-        <li>
-          <a href="">
-            简历
-          </a>
-        </li>
-        <li>
-          <a href="">
-            微博
-          </a>
-        </li>
-      </ul>
+      <p>
+        <a href="./blog">
+          博客
+        </a>
+      </p>
+      <p>
+        <a href="#">
+          实验
+        </a>
+      </p>
+      <p>
+        <a href="#">
+          简历
+        </a>
+      </p>
+      <p>
+        <a href="#">
+          微博
+        </a>
+      </p>
     </div>
+    <hr>
+    <p class="footer">I will avoid religion and politics because if we disagree, you will not like me any more.</p>
   </div>
 
 <script type="text/javascript" src="js/utils.js"></script>
 <script>
+
+  var ua = window.navigator.userAgent
+  var ua_phone = RegExp(/\b(ip(hone|od)|android|opera m(ob|in)i|windows (phone|ce)|blackberry.|s(ymbian|eries60|amsung)|p(laybook|alm|rofile\/midp|laystation portable)|nokia|fennec|htc[-_].|mobile|up.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b/i).test(ua);
+
+  var ua_tablet = RegExp(/\b(ipad|tablet|(Nexus 7)|up.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b/i).test(ua);
+
+  window.mobile = (ua_tablet || ua_phone);
+
   // 绘图
   window.onload = function() {
     var canvas = document.getElementById("canvas"),
@@ -152,7 +206,12 @@
     };
 
     // Let Chart.js know about the new plugin
-    Chart.plugins.register(simplePlugin);
+    if (!window.mobile) {
+      Chart.plugins.register(simplePlugin);
+    }
+    else {
+      document.querySelector('.main').style.backgroundColor = 'hsla(0, 0%, 100%, .5)'
+    }
 
     // 使用chart.js绘图
     window.myChart = new Chart(ctx, {
