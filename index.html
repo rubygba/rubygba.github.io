@@ -3,7 +3,7 @@
 
 <head>
   <title>Bubble Chart</title>
-  <script src="js/Chart.bundle.js"></script>
+  <script src="js/Chart.bundle.min.js"></script>
   <style type="text/css" src="css/gb-webstrap"></style>
   <style type="text/css">
   canvas {
@@ -130,7 +130,7 @@
       // This is called at the start of a render. It is only called once, even if the animation will run for a number of frames. Use beforeDraw or afterDraw
       // to do something on each animation frame
       beforeRender: function(chartInstance) {
-        console.log('render');
+        // console.log('render');
         window.clearInterval(window.int);
         window.int = window.setInterval(function () {
           window.updateMainbg()
@@ -212,45 +212,6 @@
   function updateMainbg() {
     document.querySelector('#main-bg').style.backgroundImage = 'url("' + document.getElementById('canvas').toDataURL() + '")';
   }
-
-  // 添加数据点
-  // document.getElementById('addDataset').addEventListener('click', function() {
-  //   ++addedCount;
-  //   var colorName = colorNames[bubbleChartData.datasets.length % colorNames.length];;
-  //   var dsColor = window.chartColors[colorName];
-  //   var newDataset = {
-  //     label: "My added dataset " + addedCount,
-  //     backgroundColor: color(dsColor).alpha(0.75).rgbString(),
-  //     borderColor: dsColor,
-  //     borderWidth: 1,
-  //     data: []
-  //   };
-  //
-  //   for (var index = 0; index < DEFAULT_DATASET_SIZE; ++index) {
-  //     newDataset.data.push({
-  //       x: randomScalingFactor(),
-  //       y: randomScalingFactor(),
-  //       r: Math.abs(randomScalingFactor()) / 5,
-  //     });
-  //   }
-  //
-  //   bubbleChartData.datasets.push(newDataset);
-  //   window.myChart.update();
-  // });
-  //
-  // document.getElementById('addData').addEventListener('click', function() {
-  //   if (bubbleChartData.datasets.length > 0) {
-  //     for (var index = 0; index < bubbleChartData.datasets.length; ++index) {
-  //       bubbleChartData.datasets[index].data.push({
-  //         x: randomScalingFactor(),
-  //         y: randomScalingFactor(),
-  //         r: Math.abs(randomScalingFactor()) / 5,
-  //       });
-  //     }
-  //
-  //     window.myChart.update();
-  //   }
-  // });
 </script>
 </body>
 
