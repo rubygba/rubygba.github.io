@@ -1,74 +1,257 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!doctype html>
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <title>主页</title>
-  <style>
-    canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
+  <title>Bubble Chart</title>
+  <script src="js/Chart.bundle.js"></script>
+  <style type="text/css" src="css/gb-webstrap"></style>
+  <style type="text/css">
+  canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+  }
+  /*#canvas {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    pointer-events: none;
+  }*/
+  #container {
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+  }
+  body {
+    margin: 0;
+  }
+  .main {
+    /*background-color: hsla(0, 0%, 100%, 1);*/
+    box-shadow: 0 0 3px #000;
+    /*让模糊背景和canvas一致，基于body绝对定位*/
+    position: relative;
+    overflow: hidden;
+    width: 380px;
+    height: 300px;
+    padding: 30px;
+    margin: 0 auto;
+  }
+  .main {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: hsla(0, 0%, 100%, 1);
+    z-index: -1;
+  }
+  #main-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    filter: blur(3px);
+    background: url() 0 / cover fixed;
+    /*margin: -10px;*/
+    z-index: -2;
+  }
   </style>
 </head>
+
 <body>
-<canvas id="canvas" width="300" height="300"></canvas>
-Hello World!
+  <div id="container" style="width: 100%; height: 100%">
+    <canvas id="canvas"></canvas>
+  </div>
+  <!-- <button id="randomizeData">Randomize Data</button> -->
+  <div class="main" id="main">
+    <div id="main-bg"></div>
+    <h1>rubygba的个人网站</h1>
+    <h2>rubygba's personal website</h2>
 
-<script type="text/javascript">
-  document.addEventListener('touchmove', function (e) {
-    e.preventDefault()
-  })
+    <div class="link-list">
+      <ul>
+        <li>
+          <a href="./blog">
+            博客
+          </a>
+        </li>
+        <li>
+          <a href="">
+            实验
+          </a>
+        </li>
+        <li>
+          <a href="">
+            简历
+          </a>
+        </li>
+        <li>
+          <a href="">
+            微博
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-  var canvas = document.getElementsByTagName('canvas')[0],
-    x = canvas.getContext('2d'),
-    pr = window.devicePixelRatio || 1,
-    w = window.innerWidth,
-    h = window.innerHeight,
-    f = 90,
-    q,
-    r = 0,
-    u = Math.PI * 2,
-    cos = Math.cos,
-    z = Math.random
-  canvas.width = w * pr
-  canvas.height = h * pr
-  x.scale(pr, pr)
-  x.globalAlpha = 0.6
+<script type="text/javascript" src="js/utils.js"></script>
+<script>
+  // 绘图
+  window.onload = function() {
+    var canvas = document.getElementById("canvas"),
+      ctx = canvas.getContext("2d");
+    var pr = window.devicePixelRatio || 1,
+      w = window.innerWidth,
+      h = window.innerHeight;
 
-  function draw(){
-    x.clearRect(0, 0, w, h)
-    q=[{ x: 0, y: h*.7+f }, { x: 0, y: h*.7-f }]
-    while(q[1].x < w+f) {
-      d(q[0], q[1])
-    }
+    // canvas.width = w * pr
+    // canvas.height = h * pr
+    // ctx.scale(pr, pr)
+    // ctx.globalAlpha = 0.3
+
+    // Create the plugin object with functions for all the chart states
+    var simplePlugin = {
+      beforeInit: function(chartInstance) {},
+      afterInit: function(chartInstance) {},
+
+      resize: function(chartInstance, newChartSize) {},
+
+      beforeUpdate: function(chartInstance) {},
+      afterScaleUpdate: function(chartInstance) {},
+      beforeDatasetsUpdate: function(chartInstance) {},
+      afterDatasetsUpdate: function(chartInstance) {},
+      afterUpdate: function(chartInstance) {},
+
+      // This is called at the start of a render. It is only called once, even if the animation will run for a number of frames. Use beforeDraw or afterDraw
+      // to do something on each animation frame
+      beforeRender: function(chartInstance) {
+        console.log('render');
+        window.clearInterval(window.int);
+        window.int = window.setInterval(function () {
+          window.updateMainbg()
+        }, 75);
+      },
+
+      // Easing is for animation
+      beforeDraw: function(chartInstance, easing) {},
+      afterDraw: function(chartInstance, easing) {},
+
+      // Before the datasets are drawn but after scales are drawn
+      beforeDatasetsDraw: function(chartInstance, easing) {},
+      afterDatasetsDraw: function(chartInstance, easing) {
+        // window.updateMainbg()
+        // console.log('data are already');
+      },
+
+      destroy: function(chartInstance) {}
+    };
+
+    // Let Chart.js know about the new plugin
+    Chart.plugins.register(simplePlugin);
+
+    // 使用chart.js绘图
+    window.myChart = new Chart(ctx, {
+      type: 'bubble',
+      data: bubbleChartData,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        fullWidth: false,
+        legend: {
+          display: false
+        },
+        scales:{
+          xAxes: [{
+            display: false
+          }],
+          yAxes: [{
+            display: false
+          }]
+        },
+        tooltips: {
+          enabled: false,
+          mode: 'point'
+        },
+        // title:{
+        //   display:true,
+        //   text:'Chart.js Bubble Chart'
+        // },
+      }
+    });
+  };
+
+  var colorNames = Object.keys(window.chartColors);
+
+  // 随机动画 隐去圆点boder
+  function randomAnimate() {
+    bubbleChartData.datasets.forEach(function(dataset) {
+      dataset.data = dataset.data.map(function() {
+        return {
+          x: randomScalingFactor(),
+          y: randomScalingFactor(),
+          r: Math.abs(randomScalingFactor()) / 5,
+        };
+      });
+      var tempColor = window.chartColors[colorNames[randomColorNumber()]];
+      dataset.backgroundColor = color(tempColor).alpha(0.75).rgbString();
+      dataset.borderColor = color(tempColor).alpha(0.75).rgbString();
+    });
+    window.myChart.update();
+    // window.updateMainbg();
   }
-  function d(i, j){
-    x.beginPath()
-    x.moveTo(i.x, i.y)
-    x.lineTo(j.x, j.y)
-    var k = j.x + (z()*2-0.25)*f,
-      n = y(j.y)
-    x.lineTo(k, n)
-    x.closePath()
-    r -= u / -50
-    x.fillStyle = '#'+(cos(r)*127+128<<16 | cos(r+u/3)*127+128<<8 | cos(r+u/3*2)*127+128).toString(16)
-    x.fill()
-    q[0] = q[1]
-    q[1] = {x:k, y:n}
-  }
-  function y(p){
-    var t = p + (z()*2-1.1)*f
-    return (t>h||t<0) ? y(p) : t
+
+  // document.getElementById('randomizeData').addEventListener('click', window.randomAnimate);
+  window.setInterval(window.randomAnimate, 3900)
+
+  // 更新main background
+  function updateMainbg() {
+    document.querySelector('#main-bg').style.backgroundImage = 'url("' + document.getElementById('canvas').toDataURL() + '")';
   }
 
-  document.onclick = draw()
-  document.ontouchstart = draw()
-  draw()
+  // 添加数据点
+  // document.getElementById('addDataset').addEventListener('click', function() {
+  //   ++addedCount;
+  //   var colorName = colorNames[bubbleChartData.datasets.length % colorNames.length];;
+  //   var dsColor = window.chartColors[colorName];
+  //   var newDataset = {
+  //     label: "My added dataset " + addedCount,
+  //     backgroundColor: color(dsColor).alpha(0.75).rgbString(),
+  //     borderColor: dsColor,
+  //     borderWidth: 1,
+  //     data: []
+  //   };
+  //
+  //   for (var index = 0; index < DEFAULT_DATASET_SIZE; ++index) {
+  //     newDataset.data.push({
+  //       x: randomScalingFactor(),
+  //       y: randomScalingFactor(),
+  //       r: Math.abs(randomScalingFactor()) / 5,
+  //     });
+  //   }
+  //
+  //   bubbleChartData.datasets.push(newDataset);
+  //   window.myChart.update();
+  // });
+  //
+  // document.getElementById('addData').addEventListener('click', function() {
+  //   if (bubbleChartData.datasets.length > 0) {
+  //     for (var index = 0; index < bubbleChartData.datasets.length; ++index) {
+  //       bubbleChartData.datasets[index].data.push({
+  //         x: randomScalingFactor(),
+  //         y: randomScalingFactor(),
+  //         r: Math.abs(randomScalingFactor()) / 5,
+  //       });
+  //     }
+  //
+  //     window.myChart.update();
+  //   }
+  // });
 </script>
 </body>
+
 </html>

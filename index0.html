@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>主页</title>
+  <style>
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+<canvas id="canvas" width="300" height="300"></canvas>
+Hello World!
+
+<script type="text/javascript">
+  document.addEventListener('touchmove', function (e) {
+    e.preventDefault()
+  })
+
+  var canvas = document.getElementsByTagName('canvas')[0],
+    ctx = canvas.getContext('2d'),
+    pr = window.devicePixelRatio || 1,
+    w = window.innerWidth,
+    h = window.innerHeight,
+    f = 90,
+    q,
+    r = 0,
+    u = Math.PI * 2,
+    cos = Math.cos,
+    z = Math.random
+  canvas.width = w * pr
+  canvas.height = h * pr
+  ctx.scale(pr, pr)
+  ctx.globalAlpha = 0.6
+
+  function draw(){
+    ctx.clearRect(0, 0, w, h)
+    q=[{ x: 0, y: h*.7+f }, { x: 0, y: h*.7-f }]
+    while(q[1].x < w+f) {
+      d(q[0], q[1])
+    }
+  }
+  function d(i, j){
+    ctx.beginPath()
+    ctx.moveTo(i.x, i.y)
+    ctx.lineTo(j.x, j.y)
+    var k = j.x + (z()*2-0.25)*f,
+      n = y(j.y)
+    ctx.lineTo(k, n)
+    ctx.closePath()
+    r -= u / -50
+    ctx.fillStyle = '#'+(cos(r)*127+128<<16 | cos(r+u/3)*127+128<<8 | cos(r+u/3*2)*127+128).toString(16)
+    ctx.fill()
+    q[0] = q[1]
+    q[1] = {x:k, y:n}
+  }
+  function y(p){
+    var t = p + (z()*2-1.1)*f
+    return (t>h||t<0) ? y(p) : t
+  }
+
+  document.onclick = draw()
+  document.ontouchstart = draw()
+  draw()
+</script>
+</body>
+</html>
