@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>eTouch</title>
+  <script type="text/javascript" src="etouch1.0.js"></script>
+  <style media="screen">
+
+  </style>
+</head>
+<body>
+  <div id="pox">
+    <ul>
+      <li>Lorem ipsum dolor sit amet.1</li>
+      <li>Lorem ipsum dolor sit amet.2</li>
+      <li>Lorem ipsum dolor sit amet.3</li>
+    </ul>
+  </div>
+
+<script type="text/javascript">
+  //事件代理 !!!!!第一个参数仅支持id!!!!!!
+  //支持复杂选择器代理
+  etouch('#pox','ul li',function(e,touch) {
+    e.clock = true;  //给div加锁,完全阻止默认事件
+
+    console.log('点击（tap）');
+    console.log(touch);
+  }).on('swiper',function(e,touch) {
+    console.log('实时获取滑动');
+  }).on('up',function(e,touch) {
+    console.log('上滑回调');
+  }).on('down',function(e,touch) {
+    console.log('下滑回调');
+  }).on('left',function(e,touch) {
+    console.log('左滑回调');
+  }).on('right',function(e,touch) {
+    console.log('右滑回调');
+  });
+  //直接事件批量绑定
+  // etouch('li',function(e,touch) {
+  //   console.log(this,e,touch);
+  // }).on('left',function() {
+  //
+  // })
+  //  e为事件对象，touch为触摸返回对象
+</script>
+</body>
+</html>
