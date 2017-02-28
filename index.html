@@ -133,7 +133,7 @@
         </a>
       </p>
       <p>
-        <a href="#">
+        <a href="./test/mint-ui">
           实验
         </a>
       </p>
@@ -193,8 +193,12 @@
       beforeRender: function(chartInstance) {
         // console.log('render');
         window.clearInterval(window.int);
+        window.animateCount = 0;
         window.int = window.setInterval(function () {
-          window.updateMainbg()
+          window.animateCount++;
+          if (window.animateCount < 12) {
+            window.updateMainbg();
+          }
         }, 75);
       },
 
@@ -249,9 +253,9 @@
         // },
       }
     });
-  };
 
-  var colorNames = Object.keys(window.chartColors);
+    window.colorNames = Object.keys(window.chartColors);
+  };
 
   // 随机动画 隐去圆点boder
   function randomAnimate() {
@@ -263,7 +267,7 @@
           r: Math.abs(randomScalingFactor()) / 5,
         };
       });
-      var tempColor = window.chartColors[colorNames[randomColorNumber()]];
+      var tempColor = window.chartColors[window.colorNames[randomColorNumber()]];
       dataset.backgroundColor = color(tempColor).alpha(0.75).rgbString();
       dataset.borderColor = color(tempColor).alpha(0.75).rgbString();
     });
@@ -272,7 +276,7 @@
   }
 
   // document.getElementById('randomizeData').addEventListener('click', window.randomAnimate);
-  window.setInterval(window.randomAnimate, 3900)
+  window.setInterval(window.randomAnimate, 5000)
 
   // 更新main background
   function updateMainbg() {
