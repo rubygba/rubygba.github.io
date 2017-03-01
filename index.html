@@ -203,7 +203,10 @@
       },
 
       // Easing is for animation
-      beforeDraw: function(chartInstance, easing) {},
+      beforeDraw: function(chartInstance, easing) {
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      },
       afterDraw: function(chartInstance, easing) {},
 
       // Before the datasets are drawn but after scales are drawn
@@ -223,36 +226,41 @@
     else {
       document.querySelector('.main').style.backgroundColor = 'hsla(0, 0%, 100%, .7)'
     }
+    // Chart.defaults.global.defaultColor = '#fff'
 
+    setTimeout(init, 300)
     // 使用chart.js绘图
-    window.myChart = new Chart(ctx, {
-      type: 'bubble',
-      data: bubbleChartData,
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        fullWidth: false,
-        legend: {
-          display: false
-        },
-        scales:{
-          xAxes: [{
+    function init () {
+      window.myChart = new Chart(ctx, {
+        type: 'bubble',
+        data: bubbleChartData,
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          fullWidth: false,
+          legend: {
             display: false
-          }],
-          yAxes: [{
-            display: false
-          }]
-        },
-        tooltips: {
-          enabled: false,
-          mode: 'point'
-        },
-        // title:{
-        //   display:true,
-        //   text:'Chart.js Bubble Chart'
-        // },
-      }
-    });
+          },
+          defaultColor: 'rgba(255,255,255,1)',
+          scales:{
+            xAxes: [{
+              display: false
+            }],
+            yAxes: [{
+              display: false
+            }]
+          },
+          tooltips: {
+            enabled: false,
+            mode: 'point'
+          },
+          // title:{
+          //   display:true,
+          //   text:'Chart.js Bubble Chart'
+          // },
+        }
+      })
+    }
 
     window.colorNames = Object.keys(window.chartColors);
   };
@@ -276,11 +284,15 @@
   }
 
   // document.getElementById('randomizeData').addEventListener('click', window.randomAnimate);
-  window.setInterval(window.randomAnimate, 5000)
+  window.setInterval(window.randomAnimate, 4000)
 
   // 更新main background
   function updateMainbg() {
-    document.querySelector('#main-bg').style.backgroundImage = 'url("' + document.getElementById('canvas').toDataURL() + '")';
+    // var canvas = document.getElementById('canvas')
+    // var clip = canvas.getContext('2d').getImageData(0,0,canvas.width,355)
+
+    document.querySelector('#main-bg').style.backgroundImage = 'url("' + document.getElementById('canvas').toDataURL('image/jpeg', 0.1) + '")';
+
   }
 </script>
 </body>
