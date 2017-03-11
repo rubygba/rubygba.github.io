@@ -2,14 +2,14 @@
 <html>
 
 <head>
-  <title>GameBoy.online</title>
+  <title>GameBoy.online - rubygba's personal site</title>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=0">
-  <meta name="keywords" content="GBA, gba, blog">
-  <meta name="description" content="GBA, gba, aboutme">
+  <meta name="keywords" content="GBA, ruby_gba, rubygba, personal website, blog">
+  <meta name="description" content="GBA, ruby_gba, rubygba, aboutme">
   <meta name="author" content="GBA, Weijian Yao">
   <meta name="email" content="randyrubyy@gmail.com">
   <script src="js/Chart.bundle.min.js"></script>
@@ -78,7 +78,7 @@
     /*background-color: hsla(0, 0%, 100%, 1);*/
     user-select: none;
     box-shadow: 0px 2px 5px #666;
-    /*让模糊背景和canvas一致，基于body绝对定位*/
+    /*让模糊背景和canvas一致*/
     position: relative;
     overflow: hidden;
     width: 338px;
@@ -101,6 +101,7 @@
     font-family: 'Menlo', 'Consolas', 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
     font-size: 12px;
     letter-spacing: 1px;
+    color: #666;
   }
   #main-bg {
     position: absolute;
@@ -152,9 +153,11 @@
     <p class="footer">I will avoid religion and politics because if we disagree, you will not like me any more.</p>
   </div>
 
+<!-- 图表数据 -->
 <script type="text/javascript" src="js/utils.js"></script>
-<script>
 
+<script>
+  // 移动端停用毛玻璃动画
   var ua = window.navigator.userAgent
   var ua_phone = RegExp(/\b(ip(hone|od)|android|opera m(ob|in)i|windows (phone|ce)|blackberry.|s(ymbian|eries60|amsung)|p(laybook|alm|rofile\/midp|laystation portable)|nokia|fennec|htc[-_].|mobile|up.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b/i).test(ua);
 
@@ -169,11 +172,6 @@
     var pr = window.devicePixelRatio || 1,
       w = window.innerWidth,
       h = window.innerHeight;
-
-    // canvas.width = w * pr
-    // canvas.height = h * pr
-    // ctx.scale(pr, pr)
-    // ctx.globalAlpha = 0.3
 
     // Create the plugin object with functions for all the chart states
     var simplePlugin = {
@@ -265,7 +263,7 @@
     window.colorNames = Object.keys(window.chartColors);
   };
 
-  // 随机动画 隐去圆点boder
+  // 随机动画 todo:圆点border
   function randomAnimate() {
     bubbleChartData.datasets.forEach(function(dataset) {
       dataset.data = dataset.data.map(function() {
@@ -292,7 +290,6 @@
     // var clip = canvas.getContext('2d').getImageData(0,0,canvas.width,355)
 
     document.querySelector('#main-bg').style.backgroundImage = 'url("' + document.getElementById('canvas').toDataURL('image/jpeg', 0.1) + '")';
-
   }
 </script>
 </body>
