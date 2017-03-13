@@ -12,6 +12,8 @@
   <meta name="description" content="GBA, ruby_gba, rubygba, aboutme">
   <meta name="author" content="GBA, Weijian Yao">
   <meta name="email" content="randyrubyy@gmail.com">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <script src="js/Chart.bundle.min.js"></script>
   <link rel="stylesheet" href="css/gb-webstrap.css">
   <style type="text/css">
@@ -191,7 +193,9 @@
       beforeRender: function(chartInstance) {
         // console.log('render');
         window.clearInterval(window.int);
+        // init or reset global var
         window.animateCount = 0;
+        // init or reset interval func ID
         window.int = window.setInterval(function () {
           window.animateCount++;
           if (window.animateCount < 20) {
