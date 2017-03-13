@@ -386,13 +386,14 @@
   }
 
   var eye = document.getElementById('octocat-eyes')
-  var axisX = (eye.getBoundingClientRect().left + eye.getBoundingClientRect().width/2)
-  var axisY = (eye.getBoundingClientRect().top + eye.getBoundingClientRect().height/2)
-  var main = document.getElementById('main')
-  var canvasW = main.getBoundingClientRect().width
-  var canvasH = main.getBoundingClientRect().height
-  var startX = main.getBoundingClientRect().left
-  var startY = main.getBoundingClientRect().top
+  var eyeRect = eye.getBoundingClientRect()
+  var axisX = (eyeRect.left + eyeRect.width/2)
+  var axisY = (eyeRect.top + eyeRect.height/2)
+  var mainRect = document.getElementById('main').getBoundingClientRect()
+  var canvasW = mainRect.width
+  var canvasH = mainRect.height
+  var startX = mainRect.left
+  var startY = mainRect.top
   var eyeCalc = new Eye(startX, startY, canvasW, canvasH, axisX, axisY, 2)
   // console.log(eyeCalc);
 
