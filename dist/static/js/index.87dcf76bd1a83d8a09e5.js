@@ -1,0 +1,1 @@
+webpackJsonp([3],{70:function(e,i,o){"use strict";Object.defineProperty(i,"__esModule",{value:!0});var n=o(4);n.a.config.productionTip=!1,new n.a({el:"#app",template:"<div>Hello Module! jumping to main.vue...</div>"}),setTimeout(function(){window.location.href="./main.html"},1e3)}},[70]);
