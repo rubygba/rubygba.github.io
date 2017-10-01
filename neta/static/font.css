@@ -1,0 +1,21 @@
+@font-face {
+  font-family: 'FZCCHJW--GB1-0';
+  src: url('FZCCHJW--GB1-0.woff') format('woff'),
+       url('FZCCHJW--GB1-0.ttf') format('truetype'),
+       url('FZCCHJW--GB1-0.svg#FZCCHJW--GB1-0') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'fzcchjw';
+  src: url('fzcchjw.eot');
+  src: url('fzcchjw.woff2') format('woff2'),
+       url('fzcchjw.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1 {
+  font-family: 'FZCCHJW--GB1-0';
+}
