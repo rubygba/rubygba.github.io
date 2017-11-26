@@ -1840,7 +1840,7 @@
       },
       init: function () {
         var a = this;
-        navigator.userAgent.match(/AppleWebKit.*Mobile.*/i) && (window.location.href = "/actives/m/YuLeShengDianAll");
+        // navigator.userAgent.match(/AppleWebKit.*Mobile.*/i) && (window.location.href = "/actives/m/YuLeShengDianAll");
         var t = $schedule.date;
         t = a.getdates(t);
         var e = new Date,
