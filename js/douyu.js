@@ -2065,13 +2065,17 @@
           shenHaoHtml: function (t) {
             // return a.renderShenHaoTabContent(t)
           }
-        }, this.appendMainTab(), this.getDoms(), this.bindEvents(), this.getJsonData()
+        },
+        this.appendMainTab(),
+        this.getDoms(),
+        this.bindEvents(),
+        this.getJsonData()
       },
       appendMainTab: function () {
-        var t = this,
-          e = t.renderHtml.mainTabHtml(),
-          i = e({});
-        a(".match-result").html(i)
+        // var t = this,
+        //   e = t.renderHtml.mainTabHtml(),
+        //   i = e({});
+        // a(".match-result").html(i)
       },
       renderTabContent: function () {
         var a = ["<!-- 赛况tab切换按钮 -->", '<div class="match-result-tabs">', '<div data-flag="PaiWeiTab" class="match-result-tab tab1 cur"><h2>排位晋级赛况</h2><p>11月17日-11月18日</p></div>', '<div data-flag="XiaoZuTab" class="match-result-tab tab2"><h2>小组PK赛况</h2><p>11月20日-11月24日</p></div>', '<div data-flag="ChongCiTab" class="match-result-tab tab3"><h2>冲刺赛况</h2><p>11月25日-11月26日</p></div>', '<div data-flag="ShengDianTab" class="match-result-tab tab4"><h2>盛典奖励</h2></div>', '<div data-flag="ShenHaoTab" class="match-result-tab tab5"><h2>神豪金榜</h2></div>', "</div>", '<div class="match-result-container"></div>'].join(""),
@@ -2155,19 +2159,19 @@
           n = e[a];
         if (n) switch (t.updateTabState(a), a) {
           case i.PaiWeiTab:
-            t.appendPaiWeiTabContent();
+            // t.appendPaiWeiTabContent();
             break;
           case i.XiaoZuTab:
-            t.appendXiaoZuTabContent();
+            // t.appendXiaoZuTabContent();
             break;
           case i.ChongCiTab:
-            // t.appendChongCiTabContent();
+            t.appendChongCiTabContent();
             break;
           case i.ShengDianTab:
-            t.appendShengDianTabContent();
+            // t.appendShengDianTabContent();
             break;
           case i.ShenHaoTab:
-            t.appendShenHaoTabContent()
+            // t.appendShenHaoTabContent()
         }
       },
       appendPaiWeiTabContent: function (t) {
@@ -2416,28 +2420,30 @@
           s = n.ajaxFinalUrl,
           o = n.ajaxBestUrl,
           r = [];
-        1 !== n.renderState && (a.ajax({
-          type: "GET",
-          url: s,
-          dataType: "json",
-          async: !1,
-          success: function (a) {
-            r = 0 === parseInt(a.error, 10) ? e.handleFinalData(a.data, 30) : e.handleFinalData([], 30), t = e.renderHtml.chongCiHtml(r), i.$tabContainer.append(t), n.tabConDom = i.$tabContainer.find(".match-result-content3"), n.tabConDom.find(".area-list-table").mCustomScrollbar("destroy").mCustomScrollbar()
-          },
-          error: function () {
-            r = e.handleFinalData([], 30), t = e.renderHtml.chongCiHtml(r), i.$tabContainer.append(t), n.tabConDom = i.$tabContainer.find(".match-result-content3"), n.tabConDom.find(".area-list-table").mCustomScrollbar("destroy").mCustomScrollbar()
-          }
-        }), a.ajax({
-          type: "GET",
-          url: o,
-          dataType: "json",
-          success: function (i) {
-            r = 0 === parseInt(i.error, 10) ? e.handleFinalData(i.data, 10) : e.handleFinalData([], 10), t = e.renderTenChongCiList(r), a(".J_finalp").append(t), n.renderState = 1, e.updateTabState(e.mainTabMap.ChongCiTab)
-          },
-          error: function () {
-            r = e.handleFinalData([], 10), t = e.renderTenChongCiList(r), a(".J_finalp").append(t), n.renderState = 1, e.updateTabState(e.mainTabMap.ChongCiTab)
-          }
-        }))
+        $(".match-result-content3 .area-list-table").mCustomScrollbar()
+        
+        // 1 !== n.renderState && (a.ajax({
+        //   type: "GET",
+        //   url: s,
+        //   dataType: "json",
+        //   async: !1,
+        //   success: function (a) {
+        //     r = 0 === parseInt(a.error, 10) ? e.handleFinalData(a.data, 30) : e.handleFinalData([], 30), t = e.renderHtml.chongCiHtml(r), i.$tabContainer.append(t), n.tabConDom = i.$tabContainer.find(".match-result-content3"), n.tabConDom.find(".area-list-table").mCustomScrollbar("destroy").mCustomScrollbar()
+        //   },
+        //   error: function () {
+        //     r = e.handleFinalData([], 30), t = e.renderHtml.chongCiHtml(r), i.$tabContainer.append(t), n.tabConDom = i.$tabContainer.find(".match-result-content3"), n.tabConDom.find(".area-list-table").mCustomScrollbar("destroy").mCustomScrollbar()
+        //   }
+        // }), a.ajax({
+        //   type: "GET",
+        //   url: o,
+        //   dataType: "json",
+        //   success: function (i) {
+        //     r = 0 === parseInt(i.error, 10) ? e.handleFinalData(i.data, 10) : e.handleFinalData([], 10), t = e.renderTenChongCiList(r), a(".J_finalp").append(t), n.renderState = 1, e.updateTabState(e.mainTabMap.ChongCiTab)
+        //   },
+        //   error: function () {
+        //     r = e.handleFinalData([], 10), t = e.renderTenChongCiList(r), a(".J_finalp").append(t), n.renderState = 1, e.updateTabState(e.mainTabMap.ChongCiTab)
+        //   }
+        // }))
       },
       renderChongCiTabContent: function (a) {
         var t = this,
@@ -2569,7 +2575,7 @@
           e = ($schedule.round, $schedule.date),
           i = a.mainTabMap,
           n = i.ShengDianTab;
-        n = 6 == t ? i.PaiWeiTab : 7 == t ? i.XiaoZuTab : 8 == t ? i.ChongCiTab : 10 == t ? i.ShengDianTab : 19 == e ? i.XiaoZuTab : i.ShengDianTab, a.tabContentAgent(n)
+        n = 6 == t ? i.PaiWeiTab : 7 == t ? i.XiaoZuTab : 8 == t ? i.ChongCiTab : 10 == t ? i.ShengDianTab : 19 == e ? i.XiaoZuTab : i.ShengDianTab, a.tabContentAgent(i.ChongCiTab)
       },
       getJsonData: function () {
         var a = this,
