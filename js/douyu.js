@@ -1359,8 +1359,10 @@
         storageTime: 604800,
         isPop: !1,
         init: function () {
-          this.handleCookie(), this.pop(), t.on("mod.layout.screen.change", function (a) {
-            o.detect() && o.pop()
+          this.handleCookie(),
+          // this.pop(),
+          t.on("mod.layout.screen.change", function (a) {
+            // o.detect() && o.pop()
           })
         },
         handleCookie: function () {
@@ -2162,13 +2164,13 @@
             // t.appendPaiWeiTabContent();
             break;
           case i.XiaoZuTab:
-            // t.appendXiaoZuTabContent();
+            t.appendXiaoZuTabContent();
             break;
           case i.ChongCiTab:
             t.appendChongCiTabContent();
             break;
           case i.ShengDianTab:
-            // t.appendShengDianTabContent();
+            t.appendShengDianTabContent();
             break;
           case i.ShenHaoTab:
             // t.appendShenHaoTabContent()
@@ -2240,33 +2242,35 @@
           n = $schedule.stage,
           s = $schedule.round || 1,
           o = e.tabConfig[e.mainTabMap.XiaoZuTab];
-        1 !== o.renderState && (o.renderState = 1, t = e.renderHtml.xiaoZuHtml(), i.$tabContainer.append(t), o.tabConDom = i.$tabContainer.find(".match-result-content2")), e.updateTabState(e.mainTabMap.XiaoZuTab), r.build({
-          selectors: ".match-result-content2 .ms-content-box",
-          appear: function () {
-            var t = a(this),
-              i = t.find(".J_datagroup").data("gid"),
-              r = s,
-              d = 0;
-            7 == n ? d = r - 1 : 8 != n && 9 != n || (d = 5);
-            var c = t.find(".area-list-option");
-            c.removeClass("cur").eq(d).addClass("cur"), l({
-              url: "/ztCache/AnnualZbRank/getPointRank",
-              type: "GET",
-              dataType: "json",
-              data: {
-                gid: i,
-                rd: r
-              }
-            }).then(function (a) {
-              o.rankData[i] = o.rankData[i] || {}, o.rankData[i] = a.data;
-              var l = e.renderRankXiaoZuTable(a.data);
-              t.find(".J_ranklist").remove(), t.append(l), a.data && 0 != a.data.length || t.find(".J_ranklist").addClass("no-pk-schedule"), e.ajaxPkMatch(i, r, n, s, o, d, t)
-            }).fail(function () {
-              var a = e.renderRankXiaoZuTable([]);
-              t.find(".J_ranklist").remove(), t.append(a), t.find(".J_ranklist").addClass("no-pk-schedule"), e.ajaxPkMatch(i, r, n, s, o, d, t)
-            })
-          }
-        })
+        $('.match-result-content').css('display', 'none');
+        $('.match-result-content2').css('display', 'block');
+        // 1 !== o.renderState && (o.renderState = 1, t = e.renderHtml.xiaoZuHtml(), i.$tabContainer.append(t), o.tabConDom = i.$tabContainer.find(".match-result-content2")), e.updateTabState(e.mainTabMap.XiaoZuTab), r.build({
+        //   selectors: ".match-result-content2 .ms-content-box",
+        //   appear: function () {
+        //     var t = a(this),
+        //       i = t.find(".J_datagroup").data("gid"),
+        //       r = s,
+        //       d = 0;
+        //     7 == n ? d = r - 1 : 8 != n && 9 != n || (d = 5);
+        //     var c = t.find(".area-list-option");
+        //     c.removeClass("cur").eq(d).addClass("cur"), l({
+        //       url: "/ztCache/AnnualZbRank/getPointRank",
+        //       type: "GET",
+        //       dataType: "json",
+        //       data: {
+        //         gid: i,
+        //         rd: r
+        //       }
+        //     }).then(function (a) {
+        //       o.rankData[i] = o.rankData[i] || {}, o.rankData[i] = a.data;
+        //       var l = e.renderRankXiaoZuTable(a.data);
+        //       t.find(".J_ranklist").remove(), t.append(l), a.data && 0 != a.data.length || t.find(".J_ranklist").addClass("no-pk-schedule"), e.ajaxPkMatch(i, r, n, s, o, d, t)
+        //     }).fail(function () {
+        //       var a = e.renderRankXiaoZuTable([]);
+        //       t.find(".J_ranklist").remove(), t.append(a), t.find(".J_ranklist").addClass("no-pk-schedule"), e.ajaxPkMatch(i, r, n, s, o, d, t)
+        //     })
+        //   }
+        // })
       },
       ajaxPkMatch: function (a, t, e, i, n, s, o) {
         var r = this;
@@ -2420,8 +2424,10 @@
           s = n.ajaxFinalUrl,
           o = n.ajaxBestUrl,
           r = [];
-        $(".match-result-content3 .area-list-table").mCustomScrollbar()
-        
+        $('.match-result-content').css('display', 'none');
+        $('.match-result-content3').css('display', 'block');
+        $(".match-result-content3 .area-list-table").mCustomScrollbar("destroy").mCustomScrollbar()
+
         // 1 !== n.renderState && (a.ajax({
         //   type: "GET",
         //   url: s,
@@ -2477,14 +2483,16 @@
         var a = this,
           t = a.doms,
           e = a.tabConfig[a.mainTabMap.ShengDianTab];
-        if (1 !== e.renderState) {
-          var i = a.renderHtml.shengDianHtml(),
-            n = i({
-              staticUrl: a.staticUrl
-            });
-          t.$tabContainer.append(n), e.tabConDom = t.$tabContainer.find(".match-result-content4"), e.renderState = 1
-        }
-        a.updateTabState(a.mainTabMap.ShengDianTab)
+        $('.match-result-content').css('display', 'none');
+        $('.match-result-content4').css('display', 'block');
+        // if (1 !== e.renderState) {
+        //   var i = a.renderHtml.shengDianHtml(),
+        //     n = i({
+        //       staticUrl: a.staticUrl
+        //     });
+        //   t.$tabContainer.append(n), e.tabConDom = t.$tabContainer.find(".match-result-content4"), e.renderState = 1
+        // }
+        // a.updateTabState(a.mainTabMap.ShengDianTab)
       },
       renderShengDianTabContent: function () {
         var a = ['<div class="match-result-content match-result-content4" style="display: none;">', '    <div class="ms-content-title2">', "        <h2>十大巅峰主播奖励</h2>", "    </div>", '    <div class="ms-content-tabs">', '        <div class="ms-content-tab tab1 cur">1-3名奖励</div>', '        <div class="ms-content-tab tab2">4-6名奖励</div>', '        <div class="ms-content-tab tab3">7-10名奖励</div>', "    </div>", "    <!-- 1-3名奖励 -->", '    <div class="ms-content-box">', '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon7"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">星光大道+颁奖典礼</span></h3>', "                    <p>线下盛典晚会，感谢有你，风雨相伴</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img01.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon1"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">首页幻灯推荐（30小时）</span></h3>', "                    <p>千万用户量级斗鱼王牌推荐位（2018年5月31日之前有效）</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img02.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon2"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">定制粉丝徽章（90天）</span></h3>', "                    <p>专属于主播和粉丝的最高牌面</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img03.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon3"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">直播列表页一级栏目置顶（30次）</span></h3>', "                    <p>流量收割机，置顶排第一（2018年5月31日之前有效）</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img04.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon5"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">全站开播通知（60次）</span></h3>', "                    <p>主播开播后，可主动向全站所有房间发送开播通知（类似超级火箭 广播）</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img05.jpg?v=20171101"></div>', "        </div>", '            <div class="area-list-box">', '                <div class="award-top-info">', '                <div class="the-award-icon award-icon8"></div>', '                    <div class="award-top-txt">', '                        <h3><span class="highlight">入驻2018斗鱼名人堂</span></h3>', "                        <p>嘉年华线下专属卡通造型</p>", "                    </div>", "                </div> ", '                <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img06.jpg?v=20171101"></div>', "            </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon9"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">鱼乐盛典现场巨型海报</span></h3>', "                    <p>鱼乐盛典专属个人形象大片</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img07.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon10"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">定制直播间（30天）</span></h3>', "                    <p>年度十大巅峰主播专属标识，共同见证这份荣耀</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img08.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box area-list-box3">', '            <div class="award-top-info">', '                <div class="award-top-txt">', '                    <h3><span class="highlight">盛典奖杯</span></h3>', "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img_s1.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box area-list-box3">', '            <div class="award-top-info">', '                <div class="award-top-txt">', '                    <h3><span class="highlight">官方活动优先邀请特权</span></h3>', '                    <span class="award-top-txt-state">年度盛典、斗鱼嘉年华、商务活动等</span>', "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img_s2.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box area-list-box3">', '            <div class="award-top-info">', '                <div class="award-top-txt">', '                    <h3><span class="highlight">年度盛典专题页推荐</span></h3>', "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img_s3.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box area-list-box3">', '            <div class="award-top-info">', '                <div class="award-top-txt">', '                    <h3><span class="highlight">直播间封面角标（30天）</span></h3>', "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img_s4.jpg?v=20171101"></div>', "        </div>", "    </div>", "    <!-- 4-6名奖励 -->", '    <div class="ms-content-box" style="display: none;">', '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon7"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">星光大道+颁奖典礼</span></h3>', "                    <p>线下盛典晚会，感谢有你，风雨相伴</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img01.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon3"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">直播列表页一级栏目置顶（30次）</span></h3>', "                    <p>流量收割机，置顶排第一（2018年5月31日之前有效）</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img04.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon2"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">定制粉丝徽章（90天）</span></h3>', "                    <p>专属于主播和粉丝的最高牌面</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img03.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon5"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">全站开播通知（60次）</span></h3>', "                    <p>主播开播后，可主动向全站所有房间发送开播通知（类似超级火箭 广播）</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img05.jpg?v=20171101"></div>', "        </div>", '            <div class="area-list-box">', '                <div class="award-top-info">', '                <div class="the-award-icon award-icon8"></div>', '                    <div class="award-top-txt">', '                        <h3><span class="highlight">入驻2018斗鱼名人堂</span></h3>', "                        <p>嘉年华线下专属卡通造型</p>", "                    </div>", "                </div> ", '                <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img06.jpg?v=20171101"></div>', "            </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon10"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">定制直播间（30天）</span></h3>', "                    <p>年度十大巅峰主播专属标识，共同见证这份荣耀</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img08.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon9"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">鱼乐盛典现场巨型海报</span></h3>', "                    <p>鱼乐盛典专属个人形象大片</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img07.jpg?v=20171101"></div>', "        </div>", "        <div>", '        <div class="area-list-box area-list-box3">', '            <div class="award-top-info">', '                <div class="award-top-txt">', '                    <h3><span class="highlight">盛典奖杯</span></h3>', "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img_s1.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box area-list-box3">', '            <div class="award-top-info">', '                <div class="award-top-txt">', '                    <h3><span class="highlight">官方活动优先邀请特权</span></h3>', '                    <span class="award-top-txt-state">年度盛典、斗鱼嘉年华、商务活动等</span>', "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img_s2.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box area-list-box3">', '            <div class="award-top-info">', '                <div class="award-top-txt">', '                    <h3><span class="highlight">年度盛典专题页推荐</span></h3>', "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img_s3.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box area-list-box3">', '            <div class="award-top-info">', '                <div class="award-top-txt">', '                    <h3><span class="highlight">直播间封面角标（30天）</span></h3>', "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img_s4.jpg?v=20171101"></div>', "        </div>", "        </div>", "    </div>", "    <!-- 7-10名奖励 -->", '    <div class="ms-content-box" style="display: none;">', '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon7"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">星光大道+颁奖典礼</span></h3>', "                    <p>线下盛典晚会，感谢有你，风雨相伴</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img01.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon5"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">全站开播通知（60次）</span></h3>', "                    <p>主播开播后，可主动向全站所有房间发送开播通知（类似超级火箭 广播）</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img05.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon2"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">定制粉丝徽章（90天）</span></h3>', "                    <p>专属于主播和粉丝的最高牌面</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img03.jpg?v=20171101"></div>', "        </div>", '            <div class="area-list-box">', '                <div class="award-top-info">', '                <div class="the-award-icon award-icon8"></div>', '                    <div class="award-top-txt">', '                        <h3><span class="highlight">入驻2018斗鱼名人堂</span></h3>', "                        <p>嘉年华线下专属卡通造型</p>", "                    </div>", "                </div> ", '                <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img06.jpg?v=20171101"></div>', "            </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon9"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">鱼乐盛典现场巨型海报</span></h3>', "                    <p>鱼乐盛典专属个人形象大片</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img07.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box">', '            <div class="award-top-info">', '                <div class="the-award-icon award-icon10"></div>', '                <div class="award-top-txt">', '                    <h3><span class="highlight">定制直播间（30天）</span></h3>', "                    <p>年度十大巅峰主播专属标识，共同见证这份荣耀</p>", "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img08.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box area-list-box3">', '            <div class="award-top-info">', '                <div class="award-top-txt">', '                    <h3><span class="highlight">盛典奖杯</span></h3>', "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img_s1.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box area-list-box3">', '            <div class="award-top-info">', '                <div class="award-top-txt">', '                    <h3><span class="highlight">官方活动优先邀请特权</span></h3>', '                    <span class="award-top-txt-state">年度盛典、斗鱼嘉年华、商务活动等</span>', "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img_s2.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box area-list-box3">', '            <div class="award-top-info">', '                <div class="award-top-txt">', '                    <h3><span class="highlight">年度盛典专题页推荐</span></h3>', "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img_s3.jpg?v=20171101"></div>', "        </div>", '        <div class="area-list-box area-list-box3">', '            <div class="award-top-info">', '                <div class="award-top-txt">', '                    <h3><span class="highlight">直播间封面角标（30天）</span></h3>', "                </div>", "            </div> ", '            <div class="award-img-box"><img src="{{staticUrl}}/app/douyu/res/page/annualfestival/n_img_s4.jpg?v=20171101"></div>', "        </div>", "    </div>", "</div>"].join(""),
