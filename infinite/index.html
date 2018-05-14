@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+  <meta name="format-detection" content="telephone=no, email=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="wap-font-scale" content="no">
+  <meta name="screen-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <meta name="x5-orientation" content="portrait">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="x5-page-mode" content="app">
+  <title>无限滚动</title>
+  <!-- <link rel="stylesheet" href="css/index.css"> -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/item.css">
+  <script>
+    (function(doc, win) {
+      var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function() {
+          var clientWidth = docEl.clientWidth;
+          if (!clientWidth) return;
+          if (clientWidth >= 750 && clientWidth <= 1000) {
+            docEl.style.fontSize = 100 + 'px';
+          } else if (clientWidth >= 1000) {
+            docEl.style.fontSize = 100 * (1000 / 750) + 'px';
+          } else {
+            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+          }
+        };
+      if (!doc.addEventListener) return;
+      win.addEventListener(resizeEvt, recalc, false);
+      recalc();
+    })(document, window);
+  </script>
+
+  <style>
+    html,
+    body {
+      /* background: #f2f2f2; */
+    }
+
+    .list ul {
+      background: #fff;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      box-sizing: border-box;
+      contain: layout;
+      will-change: transform;
+    }
+
+    .no-list {
+      height: 2.16rem;
+      width: 1.89rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -1.08rem;
+      margin-left: -0.945rem;
+    }
+
+    .infinite-img {
+      text-align: center;
+    }
+
+    .infinite-img img {
+      width: .72rem;
+      height: .72rem;
+    }
+
+    .infinite-img img.hide {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="temp">
+    <li class="a-item">
+      <!-- <div class="item-left">
+        <p>第4章 惺惺惜惺惺想寻</p>
+        <em>一言通天</em>
+        <div><span>2017-09-14</span>&nbsp&nbsp<span>12:40:56</span></div>
+      </div>
+      <div class="item-right">-100书币</div> -->
+      <figure>
+        <img alt="" class="placeholder-img" data-src="http://images01.mopimg.cn/imgs/20171208/20171208_029f9d50e5ea822c457470f0595d0c6a_3_4_200.jpg" src="http://images01.mopimg.cn/imgs/20171208/20171208_029f9d50e5ea822c457470f0595d0c6a_3_4_200.jpg" lazy="loaded">
+      </figure>
+      <div class="a-item-wrap">
+        <p class="title ellipsis">婚色撩人狼性总裁轻点爱</p>
+        <p class="author">木皎皎</p>
+        <p class="desc">“每月工资多少？身体有没有缺陷？外面有没有女人？”某女居高临下的看着某总裁，一脸严肃。沈大少唇角轻扬，“有没有缺陷，有没有女人你不是最清楚吗，至于工资……”“我养你！现在去领证！”还未说完，就被某个迫不及待的女人打断了…直接拖走，目标，民政局……总之这是一个先睡后婚的沈家大少诱妻，拐妻，最后宠妻的故事。</p>
+        <div class="bottom">
+          <span>总裁</span>
+          <span>豪门</span>
+        </div>
+        <div class="status bookstatus-1">已完结</div>
+      </div>
+    </li>
+    <li class="item-news"></li>
+    <li class="item-novel tombstone">
+      <img class="cover" src="img/bg_cat.png" alt="" width="100" height="200">
+      <div class="desc">
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+        <div class="meta">
+          <time class="posted-date"></time>
+        </div>
+      </div>
+    </li>
+    <li class="item-news tombstone">
+      <!-- TODO: -->
+    </li>
+  </div>
+  <ul id="chat-timeline"></ul>
+
+  <!-- 有消费记录时 -->
+  <!-- <div class="list">
+    <ul>
+      <div id="templates">
+        <li class="item" data-id="{{id}}">
+          <div class="item-left">
+            <p>第4章 惺惺惜惺惺想寻</p>
+            <em>一言通天</em>
+            <div><span>2017-09-14</span>&nbsp&nbsp<span>12:40:56</span></div>
+          </div>
+          <div class="item-right">-100书币</div>
+        </li>
+      </div>
+      <div id="tnovel">
+        <li class="a-item">
+          <figure>
+            <img alt="" class="placeholder-img" data-src="http://images01.mopimg.cn/imgs/20171208/20171208_029f9d50e5ea822c457470f0595d0c6a_3_4_200.jpg" src="http://images01.mopimg.cn/imgs/20171208/20171208_029f9d50e5ea822c457470f0595d0c6a_3_4_200.jpg" lazy="loaded">
+          </figure>
+          <div class="a-item-wrap">
+            <p class="title ellipsis">婚色撩人狼性总裁轻点爱</p>
+            <p class="author">木皎皎</p>
+            <p class="desc">“每月工资多少？身体有没有缺陷？外面有没有女人？”某女居高临下的看着某总裁，一脸严肃。沈大少唇角轻扬，“有没有缺陷，有没有女人你不是最清楚吗，至于工资……”“我养你！现在去领证！”还未说完，就被某个迫不及待的女人打断了…直接拖走，目标，民政局……总之这是一个先睡后婚的沈家大少诱妻，拐妻，最后宠妻的故事。</p>
+            <div class="bottom">
+              <span>总裁</span>
+              <span>豪门</span>
+            </div>
+            <div class="status bookstatus-1">已完结</div>
+          </div>
+        </li>
+      </div>
+    </ul>
+    <div id="infinite">
+      <div class="infinite-img"><img class="hide" src="img/loading.gif" alt=""></div>
+    </div>
+  </div> -->
+  <!-- 没有消费记录时 -->
+  <!-- <img class="no-list" src="img/05_03.png" alt=""> -->
+
+  <!-- new wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww -->
+  <!-- <div class="list">
+    <ul id="timeline">
+    </ul> -->
+  </div>
+
+  <script src="js/promise-polyfill.js"></script>
+  <script src="js/global.js"></script>
+  <script src="js/infinite2.js"></script>
+  <!-- <script>
+    var $ul = document.querySelector('ul')
+    var $el = document.querySelector('#infinite')
+
+    function insertDom() {
+      var $li = document.createElement('li')
+      $li.innerHTML = '<div class="item-left">' +
+        '<p>第4章 惺惺惜惺惺想寻</p>' +
+        '<em>一言通天</em>' +
+        '<div><span>2017-09-14</span>&nbsp&nbsp<span>12:40:56</span></div>' +
+        '</div>' +
+        '<div class="item-right">-100书币</div>'
+      $ul.appendChild($li)
+    }
+
+    var start = new infinite($el, insertDom)
+
+    setInterval(function() {
+
+    }, 1500)
+  </script> -->
+  <script>
+var INIT_TIME = new Date().getTime();
+
+// 随机DOM 有图/无图
+/**
+ * Constructs a random item with a given id.
+ * @param {number} id An identifier for the item.
+ * @return {Object} A randomly generated item.
+ */
+function randomItem(id) {
+  function pickRandom(a) {
+      return a[Math.floor(Math.random() * a.length)];
+  }
+
+  return new Promise(function(resolve) {
+    var item = {
+      id: id,
+      avatar: Math.floor(Math.random()*NUM_AVATARS),
+      self: Math.random() < 0.1,
+      image: Math.random() < 1.0 / 20 ? Math.floor(Math.random()*NUM_IMAGES) : '',
+      time: new Date(Math.floor(INIT_TIME + id*20*1000 + Math.random()*20*1000)),
+      message: pickRandom(MESSAGES)
+    }
+    // if(item.image === '') {
+    //   resolve(item);
+    // }
+    // var image = new Image();
+    // image.src = 'images/image' + item.image + '.jpg';
+    // image.addEventListener('load', function() {
+    //   item.image = image;
+    //   resolve(item);
+    // });
+    // image.addEventListener('error', function() {
+    //   item.image = '';
+    //   resolve(item);
+    // });
+    resolve(item)
+  });
+}
+
+// Class GetData
+function GetData() {
+  // Collect template nodes to be cloned when needed.
+  // this.tombstone_ = document.querySelector("#templates > .chat-item.tombstone");
+  // this.messageTemplate_ = document.querySelector("#templates > .chat-item:not(.tombstone)");
+  this.tombstone_ = document.querySelector("#temp > .item-novel.tombstone");
+  this.messageTemplate_ = document.querySelector("#temp > .a-item:not(.tombstone)");
+  this.nextItem_ = 0;
+}
+
+GetData.prototype = {
+  fetch: function(count) {
+    // Fetch at least 10 or count more objects for display.
+    count = Math.max(10, count);
+    return new Promise(function(resolve, reject) {
+      // Assume 50 ms per item.
+      setTimeout(function() {
+        console.time('render:')
+        var items = [];
+        for (var i = 0; i < Math.abs(count); i++) {
+          items[i] = randomItem(this.nextItem_++);
+        }
+        resolve(Promise.all(items));
+      }.bind(this), 1500 /* Simulated 1 second round trip time */ );
+    }.bind(this));
+  },
+
+  createTombstone: function() {
+    return this.tombstone_.cloneNode(true);
+  },
+
+  render: function(item, div) {
+    // TODO: Different style?
+    div = div || this.messageTemplate_.cloneNode(true);
+    div.dataset.id = item.id;
+    // 填充内容
+    // div.querySelector('.avatar').src = 'images/avatar' + item.avatar + '.jpg';
+    // div.querySelector('.bubble p').textContent = item.message;
+    // div.querySelector('.bubble .posted-date').textContent = item.time.toString();
+
+    // 聊天内容是否有图
+    // var img = div.querySelector('.bubble img');
+    // if (item.image !== '') {
+    //   img.classList.remove('invisible');
+    //   img.src = item.image.src;
+    //   img.width = item.image.width;
+    //   img.height = item.image.height;
+    // } else {
+    //   img.src = '';
+    //   img.classList.add('invisible');
+    // }
+
+    if (item.self) {
+      div.classList.add('from-me');
+    } else {
+      div.classList.remove('from-me');
+    }
+    return div;
+  },
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  window.scroller =
+    new InfiniteScroller(
+      document.querySelector('#chat-timeline'),
+      new GetData()
+    );
+
+  // var stats = new Stats();
+  // var domPanel = new Stats.Panel('DOM Nodes', '#0ff', '#002');
+  // stats.addPanel(domPanel);
+  // stats.showPanel(3);
+  // document.body.appendChild(stats.dom);
+  // var TIMEOUT = 100;
+  // setTimeout(function timeoutFunc() {
+  //   // Only update DOM node graph when we have time to spare to call
+  //   // numDomNodes(), which is a fairly expensive function.
+  //   requestIdleCallback(function() {
+  //     domPanel.update(numDomNodes(document.body), 1500);
+  //     setTimeout(timeoutFunc, TIMEOUT);
+  //   });
+  // }, TIMEOUT);
+});
+
+// var then = Date.now()
+// var count = 0
+
+// function nextFrame(){
+//   requestAnimationFrame(function(){
+//     count ++
+//     if(count % 20 === 0){
+//       var time = (Date.now() - then) / count
+//       var ms = Math.round(time*1000) / 1000
+//       var fps = Math.round(100000/ms) / 100
+//       console.log(`count: ${count}\t${ms}ms/frame\t${fps}fps`)
+//     }
+//     nextFrame()
+//   })
+// }
+// nextFrame()
+  </script>
+</body>
+
+</html>

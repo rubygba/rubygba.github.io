@@ -1,0 +1,47 @@
+html,
+body {
+  background: #f2f2f2;
+}
+header ul {
+  background: #fff;
+}
+header ul li {
+  height: 1.2rem;
+  border-top: 1px solid #e6e6e6;
+  margin: 0 0.3rem 0 0.3rem;
+}
+header ul li h5 {
+  float: left;
+}
+header ul li h5 p {
+  color: #222222;
+  font-size: 0.32rem;
+  padding-top: 0.15rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 5.8rem;
+}
+header ul li h5 div {
+  color: #999999;
+  font-size: 0.24rem;
+  margin-top: 0.2rem;
+}
+header ul li h4 {
+  float: right;
+  font-size: 0.32rem;
+  color: #13ccd8;
+  line-height: 1.2rem;
+}
+header ul li:nth-child(1) {
+  border: 0;
+}
+img {
+  height: 2.16rem;
+  width: 1.89rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -1.08rem;
+  margin-left: -0.945rem;
+}
