@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Only update DOM node graph when we have time to spare to call
     // numDomNodes(), which is a fairly expensive function.
     requestIdleCallback(function() {
-      domPanel.update(numDomNodes(document.body), 1500);
+      // domPanel.update(numDomNodes(document.body), 1500);
       // domPanel2.update(g_fps, 60);
       setTimeout(timeoutFunc, TIMEOUT);
     });
@@ -364,6 +364,7 @@ requestAnimationFrame(function(){
     var fps = Math.round(100000/ms) / 100
     g_fps = fps
     domPanel2.update(g_fps, 60);
+    domPanel.update(numDomNodes(document.body), 1500);
     // domPanel.update(numDomNodes(document.body), 1500);
     // console.log(`count: ${count}\t${ms}ms/frame\t${fps}fps`)
   }
