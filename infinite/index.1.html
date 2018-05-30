@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="wap-font-scale" content="no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <title>消费记录</title>
+    <!-- <link rel="stylesheet" href="css/index.css"> -->
+    <link rel="stylesheet" href="css/reset.css">
+    <script>
+        (function(doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function() {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if (clientWidth >= 750 && clientWidth <= 1000) {
+                        docEl.style.fontSize = 100 + 'px';
+                    } else if (clientWidth >= 1000) {
+                        docEl.style.fontSize = 100 * (1000 / 750) + 'px';
+                    } else {
+                        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    }
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            recalc();
+        })(document, window);
+    </script>
+
+<style>
+    html,
+    body {
+        /* background: #f2f2f2; */
+    }
+        .list ul {
+        background: #fff;
+    }
+    .list ul li {
+        height: 1.62rem;
+        border-bottom: 1px solid #e7e7e7;
+        padding: 0 0.24rem 0 0.24rem;
+        color: #333;
+        overflow: hidden;
+    }
+    .list ul li .item-left {
+        float: left;
+    }
+    .list ul li .item-left p {
+        font-size: 0.32rem;
+        padding-top: 0.2rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        line-height: 0.4rem;
+        margin-bottom: .1rem;
+    }
+    .list ul li .item-left em {
+        display: block;
+        font-size: 0.26rem;
+        line-height: 0.36rem;
+        color: #666;
+        margin-bottom: .1rem;
+    }
+    .list ul li .item-left div {
+        color: #999;
+        font-size: 0.24rem;
+        line-height: 0.3rem;
+        /* padding-bottom: 0.24rem; */
+    }
+    .list ul li .item-right {
+        float: right;
+        font-size: 0.32rem;
+        color: #13ccd8;
+        line-height: 1.6rem;
+    }
+    .no-list {
+        height: 2.16rem;
+        width: 1.89rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -1.08rem;
+        margin-left: -0.945rem;
+    }
+    .infinite-img {
+        text-align: center;
+    }
+    .infinite-img img {
+        width: .72rem;
+        height: .72rem;
+    }
+    .infinite-img img.hide {
+        display: none;
+    }
+</style>
+</head>
+<body>
+    <!-- 有消费记录时 -->
+    <div class="list">
+        <ul>
+            <li>
+                <div class="item-left">
+                    <p>第4章 惺惺惜惺惺想寻</p>
+                    <em>一言通天</em>
+                    <div><span>2017-09-14</span>&nbsp&nbsp<span>12:40:56</span></div>
+                </div>
+                <div class="item-right">-100书币</div>
+            </li>
+        </ul>
+        <!-- 和即将插入dom的node同级 -->
+        <div id="infinite"><div class="infinite-img"><img class="hide" src="img/loading.gif" alt=""></div></div>
+    </div>
+
+    <!-- 没有消费记录时 -->
+    <img class="no-list" src="img/05_03.png" alt="">
+
+<script src="js/infinite.js"></script>
+<script>
+    var $ul = document.querySelector('ul')
+    var $el = document.querySelector('#infinite')
+
+    function insertDom() {
+        var $li = document.createElement('li')
+        $li.innerHTML = '<div class="item-left">' +
+            '<p>第4章 惺惺惜惺惺想寻</p>' +
+            '<em>一言通天</em>' +
+            '<div><span>2017-09-14</span>&nbsp&nbsp<span>12:40:56</span></div>' +
+            '</div>' +
+            '<div class="item-right">-100书币</div>'
+        $ul.appendChild($li)
+    }
+
+    var start = new infinite($el, insertDom)
+
+    setInterval(function () {
+
+    }, 1500)
+</script>
+</body>
+</html>

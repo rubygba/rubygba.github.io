@@ -182,3 +182,9 @@ li {
 .a-item .status.bookstatus-1 {
   color: #ff9926
 }
+
+.model {
+  position: fixed;
+  left: 0;
+  top: 0;
+}

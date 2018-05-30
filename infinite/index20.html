@@ -17,7 +17,7 @@
   <meta name="x5-orientation" content="portrait">
   <meta name="x5-fullscreen" content="true">
   <meta name="x5-page-mode" content="app">
-  <title>1000条静态信息流</title>
+  <title>无限滚动</title>
   <!-- <link rel="stylesheet" href="css/index.css"> -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/item.css">
@@ -172,7 +172,6 @@
   <!-- <div class="list">
     <ul id="timeline">
     </ul> -->
-    <div class="model"></div>
   </div>
 
   <script src="js/promise-polyfill.js"></script>
@@ -253,7 +252,7 @@ function GetData() {
 GetData.prototype = {
   fetch: function(count) {
     // Fetch at least 10 or count more objects for display.
-    // count = Math.max(1000, count);
+    count = Math.max(20, count);
     return new Promise(function(resolve, reject) {
       // Assume 50 ms per item.
       setTimeout(function() {
@@ -262,7 +261,7 @@ GetData.prototype = {
           items[i] = randomItem(this.nextItem_++);
         }
         resolve(Promise.all(items));
-      }.bind(this), 1000 /* Simulated 1 second round trip time */ );
+      }.bind(this), 1 /* Simulated 1 second round trip time */ );
     }.bind(this));
   },
 
@@ -301,76 +300,89 @@ GetData.prototype = {
 };
 
 
-var stats = new Stats();
-// var domPanel = new Stats.Panel('Time MS', '#0ff', '#002');
-var domPanel = new Stats.Panel('DOM nodes', '#0ff', '#002');
-stats.dom.style.position = 'relative';
-stats.dom.style.float = 'left';
 
-var stats2 = new Stats();
-var domPanel2 = new Stats.Panel('FPS', '#ff8', '#221');
-stats2.dom.style.position = 'relative';
-stats2.dom.style.float = 'left';
+var stats = new Stats();
+var domPanel = new Stats.Panel('Time MS', '#0ff', '#002');
+var domPanel2 = new Stats.Panel('FPS Test', '#ff8', '#221');
 
 document.addEventListener('DOMContentLoaded', function() {
-  var source_ = new GetData()
-  // var tombstone_ = document.querySelector("#temp > .item-novel.tombstone");
-  var messageTemplate_ = document.querySelector("#temp > .a-item:not(.tombstone)");
-  var nodes = document.createElement('DIV');
-  source_.fetch(1000).then(items => {
-    console.log(items.length)
-    for (var i = 0; i < items.length; i++) {
-      nodes.appendChild(messageTemplate_.cloneNode(true))
-    }
-    document.getElementById('chat-timeline').appendChild(nodes);
-
-  })
+  // window.scroller =
+  //   new InfiniteScroller(
+  //     document.querySelector('#chat-timeline'),
+  //     new GetData()
+  //   );
+  add20()
 
   stats.addPanel(domPanel);
-  stats2.addPanel(domPanel2);
+  stats.addPanel(domPanel2);
   stats.showPanel(3);
-  stats2.showPanel(3);
-  document.querySelector('.model').appendChild(stats2.dom);
-  document.querySelector('.model').appendChild(stats.dom);
-  var TIMEOUT = 100;
-  setTimeout(function timeoutFunc() {
-    // Only update DOM node graph when we have time to spare to call
-    // numDomNodes(), which is a fairly expensive function.
-    requestIdleCallback(function() {
-      domPanel.update(numDomNodes(document.body), 1500);
-      // domPanel2.update(g_fps, 60);
-      setTimeout(timeoutFunc, TIMEOUT);
-    });
-  }, TIMEOUT);
+  document.body.appendChild(stats.dom);
+  // var TIMEOUT = 100;
+  // setTimeout(function timeoutFunc() {
+  //   // Only update DOM node graph when we have time to spare to call
+  //   // numDomNodes(), which is a fairly expensive function.
+  //   requestIdleCallback(function() {
+  //     // domPanel.update(numDomNodes(document.body), 1500);
+  //     domPanel2.update(g_fps, 60);
+  //     setTimeout(timeoutFunc, TIMEOUT);
+  //   });
+  // }, TIMEOUT);
 });
 
 function numDomNodes(node) {
-if(!node.children || node.children.length == 0)
-  return 0;
-var childrenCount = Array.from(node.children).map(numDomNodes);
-return node.children.length + childrenCount.reduce(function(p, c){ return p + c; }, 0);
+  if(!node.children || node.children.length == 0)
+    return 0;
+  var childrenCount = Array.from(node.children).map(numDomNodes);
+  return node.children.length + childrenCount.reduce(function(p, c){ return p + c; }, 0);
 }
 
-var then = Date.now()
+var then = performance.now()
 var count = 0
 var g_fps = 0
 
 function nextFrame(){
-requestAnimationFrame(function(){
-  count++
-  if(count % 20 === 0){
-    var time = (Date.now() - then) / count
-    var ms = Math.round(time*1000) / 1000
-    var fps = Math.round(100000/ms) / 100
-    g_fps = fps
-    domPanel2.update(g_fps, 60);
-    // domPanel.update(numDomNodes(document.body), 1500);
-    // console.log(`count: ${count}\t${ms}ms/frame\t${fps}fps`)
-  }
-  nextFrame()
-})
+  requestAnimationFrame(function(){
+    count ++
+    if(count % 20 === 0){
+      var time = (performance.now() - then) / count
+      var ms = Math.round(time*1000) / 1000
+      var fps = Math.round(100000/ms) / 100
+      g_fps = fps
+      domPanel2.update(g_fps, 60);
+      // console.log(`count: ${count}\t${ms}ms/frame\t${fps}fps`)
+    }
+    nextFrame()
+  })
 }
 nextFrame()
+
+// document.addEventListener('DOMContentLoaded', add20);
+
+function add20() {
+  var source_ = new GetData()
+  // var tombstone_ = document.querySelector("#temp > .item-novel.tombstone");
+  var messageTemplate_ = document.querySelector("#temp > .a-item:not(.tombstone)");
+  var nodes = document.createElement('DIV');
+  source_.fetch(20).then(items => {
+    // console.log(items.length)
+    // console.time('render:')
+    var _timing = performance.now()
+    var mother = document.getElementById('chat-timeline')
+    var i = 0;
+    for (i = 0; i < items.length; i++) {
+      nodes.appendChild(messageTemplate_.cloneNode(true))
+      // document.getElementById('chat-timeline').appendChild(nodes);
+    }
+    mother.appendChild(nodes)
+
+    // console.timeEnd('render:')
+    domPanel.update(performance.now() - _timing, 50);
+  })
+}
+
+setInterval(function () {
+  add20()
+}, 500)
 
 // document.addEventListener('DOMContentLoaded', function() {
 //   window.scroller =
@@ -394,25 +406,6 @@ nextFrame()
   //   });
   // }, TIMEOUT);
 // });
-
-////////////////////////
-// 帧数显示
-// var then = Date.now()
-// var count = 0
-
-// function nextFrame(){
-//   requestAnimationFrame(function(){
-//     count ++
-//     if(count % 20 === 0){
-//       var time = (Date.now() - then) / count
-//       var ms = Math.round(time*1000) / 1000
-//       var fps = Math.round(100000/ms) / 100
-//       console.log(`count: ${count}\t${ms}ms/frame\t${fps}fps`)
-//     }
-//     nextFrame()
-//   })
-// }
-// nextFrame()
   </script>
 </body>
 

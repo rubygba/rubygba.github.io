@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div id="message"></div>
+<script>
+
+var then = Date.now()
+var count = 0
+
+function nextFrame(){
+  requestAnimationFrame(function(){
+    count ++
+    if(count % 20 === 0){
+      var time = (Date.now() - then) / count
+      var ms = Math.round(time*1000) / 1000
+      var fps = Math.round(100000/ms) / 100
+      console.log(`count: ${count}\t${ms}ms/frame\t${fps}fps`)
+    }
+    nextFrame()
+  })
+}
+nextFrame()
+
+// var then = Date.now()
+// var i = 0
+// var el = document.getElementById('message')
+// while (true) {
+//   var now = Date.now()
+//   if (now - then > 1000) {
+//     if (i++ >= 5) {
+//       break;
+//     }
+//     el.innerText += 'hello!\n'
+//     console.log(i)
+//     then = now
+//   }
+// }
+</script>
+</body>
+</html>

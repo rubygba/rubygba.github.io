@@ -367,7 +367,6 @@
       var itemsNeeded = this.lastAttachedItem_ - this.loadedItems_;
       if (itemsNeeded <= 0)
         return;
-      console.timeEnd('render:')
       this.requestInProgress_ = true;
       this.source_.fetch(itemsNeeded).then(this.addContent.bind(this));
     },
@@ -392,6 +391,8 @@
      *     scroller list.
      */
     addContent: function(items) {
+      var _timing = performance.now()
+      // console.time('render:')
       this.requestInProgress_ = false;
       for (var i = 0; i < items.length; i++) {
         if (this.items_.length <= this.loadedItems_)
@@ -399,6 +400,9 @@
         this.items_[this.loadedItems_++].data = items[i];
       }
       this.attachContent();
+      console.log(performance.now() - _timing)
+      domPanel.update(performance.now() - _timing, 50);
+      // console.timeEnd('render:')
     }
   }
   })(self);
