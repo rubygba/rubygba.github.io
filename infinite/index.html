@@ -252,8 +252,8 @@ function GetData() {
 
 GetData.prototype = {
   fetch: function(count) {
-    // Fetch at least 10 or count more objects for display.
-    count = Math.max(10, count);
+    // Fetch at least 20 or count more objects for display.
+    count = Math.max(20, count);
     return new Promise(function(resolve, reject) {
       // Assume 50 ms per item.
       setTimeout(function() {
@@ -327,15 +327,15 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('.model').appendChild(stats2.dom);
   document.querySelector('.model').appendChild(stats.dom);
   var TIMEOUT = 100;
-  setTimeout(function timeoutFunc() {
-    // Only update DOM node graph when we have time to spare to call
-    // numDomNodes(), which is a fairly expensive function.
-    requestIdleCallback(function() {
-      // domPanel.update(numDomNodes(document.body), 1500);
-      // domPanel2.update(g_fps, 60);
-      setTimeout(timeoutFunc, TIMEOUT);
-    });
-  }, TIMEOUT);
+  // setTimeout(function timeoutFunc() {
+  //   // Only update DOM node graph when we have time to spare to call
+  //   // numDomNodes(), which is a fairly expensive function.
+  //   requestIdleCallback(function() {
+  //     domPanel.update(numDomNodes(document.body), 3000);
+  //     // domPanel2.update(g_fps, 60);
+  //     setTimeout(timeoutFunc, TIMEOUT);
+  //   });
+  // }, TIMEOUT);
 });
 
 // 计算节点数
@@ -360,7 +360,7 @@ function nextFrame(){
       g_fps = fps
 
       domPanel2.update(g_fps, 60);
-      domPanel.update(numDomNodes(document.body), 1500);
+      domPanel.update(numDomNodes(document.body), 3000);
       // console.log(`count: ${count}\t${ms}ms/frame\t${fps}fps`)
     }
     nextFrame()

@@ -187,4 +187,7 @@ li {
   position: fixed;
   left: 0;
   top: 0;
+  width: 160px;
+  z-index: 1024;
+  height: 48px;
 }
