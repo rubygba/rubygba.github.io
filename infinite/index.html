@@ -28,13 +28,7 @@
         recalc = function() {
           var clientWidth = docEl.clientWidth;
           if (!clientWidth) return;
-          if (clientWidth >= 750 && clientWidth <= 1000) {
-            docEl.style.fontSize = 100 + 'px';
-          } else if (clientWidth >= 1000) {
-            docEl.style.fontSize = 100 * (1000 / 750) + 'px';
-          } else {
-            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
-          }
+          docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
         };
       if (!doc.addEventListener) return;
       win.addEventListener(resizeEvt, recalc, false);
@@ -128,6 +122,7 @@
       <!-- TODO: -->
     </li>
   </div>
+
   <ul id="chat-timeline"></ul>
 
   <!-- 有消费记录时 -->
@@ -172,6 +167,7 @@
   <!-- <div class="list">
     <ul id="timeline">
     </ul> -->
+    
     <div class="model"></div>
   </div>
 
@@ -326,7 +322,7 @@ document.addEventListener('DOMContentLoaded', function() {
   stats2.showPanel(3);
   document.querySelector('.model').appendChild(stats2.dom);
   document.querySelector('.model').appendChild(stats.dom);
-  var TIMEOUT = 100;
+  // var TIMEOUT = 100;
   // setTimeout(function timeoutFunc() {
   //   // Only update DOM node graph when we have time to spare to call
   //   // numDomNodes(), which is a fairly expensive function.

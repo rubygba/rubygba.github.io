@@ -190,4 +190,6 @@ li {
   width: 160px;
   z-index: 1024;
   height: 48px;
+  opacity: 0.9;
+  background: #000;
 }
