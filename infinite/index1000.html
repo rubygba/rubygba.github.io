@@ -17,7 +17,7 @@
   <meta name="x5-orientation" content="portrait">
   <meta name="x5-fullscreen" content="true">
   <meta name="x5-page-mode" content="app">
-  <title>1000条静态信息流</title>
+  <title>无优化1000+信息流</title>
   <!-- <link rel="stylesheet" href="css/index.css"> -->
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/item.css">
@@ -310,11 +310,58 @@ var domPanel2 = new Stats.Panel('FPS', '#ff8', '#221');
 stats2.dom.style.position = 'relative';
 stats2.dom.style.float = 'left';
 
+//滚动条在Y轴上的滚动距离
+function getScrollTop(doc){
+// 　　var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;
+// 　　if(doc.body){
+// 　　　　bodyScrollTop = doc.body.scrollTop;
+// 　　}
+// 　　if(doc.documentElement){
+// 　　　　documentScrollTop = doc.documentElement.scrollTop;
+// 　　}
+// 　　scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+// 　　return scrollTop;
+  return doc.scrollTop
+}
+
+//文档的总高度
+function getScrollHeight(doc){
+// 　　var scrollHeight = 0, bodyScrollHeight = 0, documentScrollHeight = 0;
+// 　　if(doc.body){
+// 　　　　bodyScrollHeight = doc.body.scrollHeight;
+// 　　}
+// // 　　if(doc.documentElement){
+// // 　　　　documentScrollHeight = doc.documentElement.scrollHeight;
+// 　　　　documentScrollHeight = doc.scrollHeight;
+// 　　}
+// 　　scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+// 　　return scrollHeight;
+  return doc.scrollHeight
+}
+
+//浏览器视口的高度
+function getWindowHeight(){
+　　var windowHeight = 0;
+　　if(document.compatMode == "CSS1Compat"){
+　　　　windowHeight = document.documentElement.clientHeight;
+　　}else{
+　　　　windowHeight = document.body.clientHeight;
+　　}
+　　return windowHeight;
+}
+
+window.onscroll = function(){
+};
+
+var loading = false
+
 document.addEventListener('DOMContentLoaded', function() {
   var source_ = new GetData()
   // var tombstone_ = document.querySelector("#temp > .item-novel.tombstone");
   var messageTemplate_ = document.querySelector("#temp > .a-item:not(.tombstone)");
   // var nodes = document.createElement('DIV');
+
+  loading = true
   source_.fetch(1000).then(items => {
     console.log(items.length)
     for (var i = 0; i < items.length; i++) {
@@ -324,8 +371,35 @@ document.addEventListener('DOMContentLoaded', function() {
       div.querySelector('.author').textContent = items[i].time.toString();
       // nodes.appendChild(messageTemplate_.cloneNode(true))
       document.getElementById('chat-timeline').appendChild(div);
+      loading = false
     }
   })
+
+  var container = document.querySelector('#chat-timeline')
+
+  // container.onscroll = function () {
+    setInterval(function () {
+    console.log(getScrollHeight(container) - getScrollTop(container) - getWindowHeight())
+  　　if(getScrollHeight(container) - getScrollTop(container) - getWindowHeight() < 600 && !loading){
+        loading = true
+        source_.fetch(1000).then(items => {
+          console.log(items.length)
+          for (var i = 0; i < items.length; i++) {
+            var div = messageTemplate_.cloneNode(true);
+            div.dataset.id = items[i].id;
+            div.querySelector('.placeholder-img').src = items[i].img;
+            div.querySelector('.author').textContent = items[i].time.toString();
+            // nodes.appendChild(messageTemplate_.cloneNode(true))
+            document.getElementById('chat-timeline').appendChild(div);
+            loading = false
+          }
+        })
+      }
+    }, 100)
+// 　　if(getScrollHeight(container) - getScrollTop(container) - getWindowHeight() < 100){
+// 　　}
+  // }
+
 
   // setInterval(function () {
   //   source_.fetch(20).then(items => {
