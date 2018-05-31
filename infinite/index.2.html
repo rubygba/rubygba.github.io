@@ -28,7 +28,13 @@
         recalc = function() {
           var clientWidth = docEl.clientWidth;
           if (!clientWidth) return;
-          docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+          if (clientWidth >= 750 && clientWidth <= 1000) {
+            docEl.style.fontSize = 100 + 'px';
+          } else if (clientWidth >= 1000) {
+            docEl.style.fontSize = 100 * (1000 / 750) + 'px';
+          } else {
+            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+          }
         };
       if (!doc.addEventListener) return;
       win.addEventListener(resizeEvt, recalc, false);
@@ -169,7 +175,7 @@
     <ul id="timeline">
     </ul> -->
 
-    <div class="model"></div>
+    <!-- <div class="model"></div> -->
   </div>
 
   <script src="js/promise-polyfill.js"></script>
@@ -199,7 +205,6 @@
   </script> -->
   <script>
 var INIT_TIME = new Date().getTime();
-var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 
 // 随机DOM 有图/无图
 /**
@@ -305,13 +310,13 @@ GetData.prototype = {
 var stats = new Stats();
 // var domPanel = new Stats.Panel('Time MS', '#0ff', '#002');
 var domPanel = new Stats.Panel('DOM nodes', '#0ff', '#002');
-stats.dom.style.position = 'relative';
-stats.dom.style.float = 'left';
+// stats.dom.style.position = 'relative';
+// stats.dom.style.float = 'left';
 
 var stats2 = new Stats();
 var domPanel2 = new Stats.Panel('FPS', '#ff8', '#221');
-stats2.dom.style.position = 'relative';
-stats2.dom.style.float = 'left';
+// stats2.dom.style.position = 'relative';
+// stats2.dom.style.float = 'left';
 
 document.addEventListener('DOMContentLoaded', function() {
   // TODO: 滚动监听优化
@@ -323,15 +328,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   stats.addPanel(domPanel);
   stats2.addPanel(domPanel2);
-  if (isiOS) {
-    stats.showPanel(2);
-    stats2.showPanel(2);
-  } else {
-    stats.showPanel(3);
-    stats2.showPanel(3);
-  }
-  document.querySelector('.model').appendChild(stats2.dom);
-  document.querySelector('.model').appendChild(stats.dom);
+  stats.showPanel(3);
+  stats2.showPanel(3);
+  document.body.appendChild(stats.dom);
+  document.body.appendChild(stats2.dom);
+  // document.querySelector('.model').appendChild(stats2.dom);
+  // document.querySelector('.model').appendChild(stats.dom);
+
   // var TIMEOUT = 100;
   // setTimeout(function timeoutFunc() {
   //   // Only update DOM node graph when we have time to spare to call

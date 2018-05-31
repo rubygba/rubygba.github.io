@@ -40,6 +40,7 @@ li {
   width: 4.8rem;
   margin-left: .3rem;
   font-size: .3rem;
+  background: #fff;
 }
 
 .item-novel .item-left {
@@ -191,7 +192,7 @@ li {
   left: 0;
   top: 0;
   width: 160px;
-  z-index: 1024;
+  z-index: 10024;
   height: 48px;
   opacity: 0.9;
   /* background: #000; */

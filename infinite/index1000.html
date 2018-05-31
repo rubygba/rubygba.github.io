@@ -95,7 +95,7 @@
         <img alt="" class="placeholder-img" data-src="http://images01.mopimg.cn/imgs/20171208/20171208_029f9d50e5ea822c457470f0595d0c6a_3_4_200.jpg" src="http://images01.mopimg.cn/imgs/20171208/20171208_029f9d50e5ea822c457470f0595d0c6a_3_4_200.jpg" lazy="loaded">
       </figure>
       <div class="a-item-wrap">
-        <p class="title ellipsis">婚色撩人狼性总裁轻点爱</p>
+        <p class="title ellipsis">贵女毒心邪王嗜宠无下限</p>
         <p class="author">木皎皎</p>
         <p class="desc">“每月工资多少？身体有没有缺陷？外面有没有女人？”某女居高临下的看着某总裁，一脸严肃。沈大少唇角轻扬，“有没有缺陷，有没有女人你不是最清楚吗，至于工资……”“我养你！现在去领证！”还未说完，就被某个迫不及待的女人打断了…直接拖走，目标，民政局……总之这是一个先睡后婚的沈家大少诱妻，拐妻，最后宠妻的故事。</p>
         <div class="bottom">
@@ -196,6 +196,7 @@
   </script> -->
   <script>
 var INIT_TIME = new Date().getTime();
+var isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 
 // 随机DOM 有图/无图
 /**
@@ -324,13 +325,31 @@ document.addEventListener('DOMContentLoaded', function() {
       // nodes.appendChild(messageTemplate_.cloneNode(true))
       document.getElementById('chat-timeline').appendChild(div);
     }
-
   })
+
+  // setInterval(function () {
+  //   source_.fetch(20).then(items => {
+  //     console.log(items.length)
+  //     for (var i = 0; i < items.length; i++) {
+  //       var div = messageTemplate_.cloneNode(true);
+  //       div.dataset.id = items[i].id;
+  //       div.querySelector('.placeholder-img').src = items[i].img;
+  //       div.querySelector('.author').textContent = items[i].time.toString();
+  //       // nodes.appendChild(messageTemplate_.cloneNode(true))
+  //       document.getElementById('chat-timeline').appendChild(div);
+  //     }
+  //   })
+  // }, 10000)
 
   stats.addPanel(domPanel);
   stats2.addPanel(domPanel2);
-  stats.showPanel(3);
-  stats2.showPanel(3);
+  if (isiOS) {
+    stats.showPanel(2);
+    stats2.showPanel(2);
+  } else {
+    stats.showPanel(3);
+    stats2.showPanel(3);
+  }
   document.querySelector('.model').appendChild(stats2.dom);
   document.querySelector('.model').appendChild(stats.dom);
   var TIMEOUT = 100;
