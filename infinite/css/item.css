@@ -136,7 +136,10 @@ li {
 .a-item .author {
   font-size: .22rem;
   color: #999;
-  margin-bottom: .1rem
+  margin-bottom: .1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .a-item .desc {
   font-size: .28rem;

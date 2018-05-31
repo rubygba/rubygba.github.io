@@ -213,6 +213,7 @@ function randomItem(id) {
       id: id,
       avatar: Math.floor(Math.random()*NUM_AVATARS),
       self: Math.random() < 0.1,
+      img: '//placekitten.com/' + Math.floor(Math.random()*50+100) + '/' + Math.floor(Math.random()*100+200),
       image: Math.random() < 1.0 / 20 ? Math.floor(Math.random()*NUM_IMAGES) : '',
       time: new Date(Math.floor(INIT_TIME + id*20*1000 + Math.random()*20*1000)),
       message: pickRandom(MESSAGES)
@@ -268,6 +269,8 @@ GetData.prototype = {
     // TODO: Different style?
     div = div || this.messageTemplate_.cloneNode(true);
     div.dataset.id = item.id;
+    div.querySelector('.placeholder-img').src = item.img;
+    div.querySelector('.author').textContent = item.time.toString();
     // 填充内容
     // div.querySelector('.avatar').src = 'images/avatar' + item.avatar + '.jpg';
     // div.querySelector('.bubble p').textContent = item.message;
@@ -310,13 +313,17 @@ document.addEventListener('DOMContentLoaded', function() {
   var source_ = new GetData()
   // var tombstone_ = document.querySelector("#temp > .item-novel.tombstone");
   var messageTemplate_ = document.querySelector("#temp > .a-item:not(.tombstone)");
-  var nodes = document.createElement('DIV');
+  // var nodes = document.createElement('DIV');
   source_.fetch(1000).then(items => {
     console.log(items.length)
     for (var i = 0; i < items.length; i++) {
-      nodes.appendChild(messageTemplate_.cloneNode(true))
+      var div = messageTemplate_.cloneNode(true);
+      div.dataset.id = items[i].id;
+      div.querySelector('.placeholder-img').src = items[i].img;
+      div.querySelector('.author').textContent = items[i].time.toString();
+      // nodes.appendChild(messageTemplate_.cloneNode(true))
+      document.getElementById('chat-timeline').appendChild(div);
     }
-    document.getElementById('chat-timeline').appendChild(nodes);
 
   })
 

@@ -92,11 +92,12 @@
       </div>
       <div class="item-right">-100书币</div> -->
       <figure>
-        <img alt="" class="placeholder-img" data-src="http://images01.mopimg.cn/imgs/20171208/20171208_029f9d50e5ea822c457470f0595d0c6a_3_4_200.jpg" src="http://images01.mopimg.cn/imgs/20171208/20171208_029f9d50e5ea822c457470f0595d0c6a_3_4_200.jpg" lazy="loaded">
+        <!-- <img alt="" class="placeholder-img" data-src="http://images01.mopimg.cn/imgs/20171208/20171208_029f9d50e5ea822c457470f0595d0c6a_3_4_200.jpg" src="http://images01.mopimg.cn/imgs/20171208/20171208_029f9d50e5ea822c457470f0595d0c6a_3_4_200.jpg" lazy="loaded"> -->
+        <img alt="" class="placeholder-img" src="null" lazy="loaded">
       </figure>
       <div class="a-item-wrap">
         <p class="title ellipsis">婚色撩人狼性总裁轻点爱</p>
-        <p class="author">木皎皎</p>
+        <p class="author">1999</p>
         <p class="desc">“每月工资多少？身体有没有缺陷？外面有没有女人？”某女居高临下的看着某总裁，一脸严肃。沈大少唇角轻扬，“有没有缺陷，有没有女人你不是最清楚吗，至于工资……”“我养你！现在去领证！”还未说完，就被某个迫不及待的女人打断了…直接拖走，目标，民政局……总之这是一个先睡后婚的沈家大少诱妻，拐妻，最后宠妻的故事。</p>
         <div class="bottom">
           <span>总裁</span>
@@ -215,6 +216,7 @@ function randomItem(id) {
       id: id,
       avatar: Math.floor(Math.random()*NUM_AVATARS),
       self: Math.random() < 0.1,
+      img: '//placekitten.com/' + Math.floor(Math.random()*50+100) + '/' + Math.floor(Math.random()*100+200),
       image: Math.random() < 1.0 / 20 ? Math.floor(Math.random()*NUM_IMAGES) : '',
       time: new Date(Math.floor(INIT_TIME + id*20*1000 + Math.random()*20*1000)),
       message: pickRandom(MESSAGES)
@@ -271,7 +273,9 @@ GetData.prototype = {
     div = div || this.messageTemplate_.cloneNode(true);
     div.dataset.id = item.id;
     // 填充内容
-    // div.querySelector('.avatar').src = 'images/avatar' + item.avatar + '.jpg';
+    div.querySelector('.placeholder-img').src = item.img;
+    div.querySelector('.author').textContent = item.time.toString();
+    // div.querySelector('.placeholder-img').src = 'images/avatar' + item.avatar + '.jpg';
     // div.querySelector('.bubble p').textContent = item.message;
     // div.querySelector('.bubble .posted-date').textContent = item.time.toString();
 
@@ -356,7 +360,7 @@ function nextFrame(){
       g_fps = fps
 
       domPanel2.update(g_fps, 60);
-      // domPanel.update(numDomNodes(document.body), 3000);
+      domPanel.update(numDomNodes(document.body), 3000);
       // console.log(`count: ${count}\t${ms}ms/frame\t${fps}fps`)
     }
     nextFrame()
