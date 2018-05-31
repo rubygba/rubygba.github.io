@@ -252,7 +252,7 @@ function GetData() {
 GetData.prototype = {
   fetch: function(count) {
     // Fetch at least 20 or count more objects for display.
-    count = Math.max(100, count);
+    count = Math.max(500, count);
     return new Promise(function(resolve, reject) {
       // Assume 50 ms per item.
       setTimeout(function() {
@@ -261,7 +261,7 @@ GetData.prototype = {
           items[i] = randomItem(this.nextItem_++);
         }
         resolve(Promise.all(items));
-      }.bind(this), 1000 /* Simulated 1 second round trip time */ );
+      }.bind(this), 1300 /* Simulated 1 second round trip time */ );
     }.bind(this));
   },
 
