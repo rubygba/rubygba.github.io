@@ -703,7 +703,7 @@ function alertWifi() {
   $('#J_skipwifi').on('click', function() {
     isWifiShow = true
     $('.modal-wifi').addClass('hide')
-    // downloadApp(localStorage.mopdownstatus || 1, 1)
-    // loadStatus = 1
+    loadStatus = 1
+    downloadApp(1, 1)
   })
 }
