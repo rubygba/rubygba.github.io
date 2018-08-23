@@ -419,14 +419,15 @@ function shareInstall(iaccid) {
           isPause = true
         } else if (loadStatus == 12 && isWifiShow) {
           // 4g下点击，暂停
-          downloadApp(3)
+          downloadApp(1)
           isPause = true
         } else if (loadStatus == 4 || loadStatus == 5 || loadStatus == 6) {
           // 网络错误，重试
           downloadApp(loadStatus)
           m.wakeupOrInstall()
         } else if (loadStatus == 12 || loadStatus == 11) {
-          downloadApp(3)
+          downloadApp(1)
+          m.wakeupOrInstall()
         } else {
           m.wakeupOrInstall()
         }
@@ -621,6 +622,7 @@ function downloadApp(status, confirm) {
 
   window.downSuccess = function(res) {
     var data = JSON.parse(res)
+    alert(res)
     loadStatus = data.status
     loadProgress = data.progress
     updateButtonStyle()
