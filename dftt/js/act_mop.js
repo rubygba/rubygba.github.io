@@ -417,16 +417,16 @@ function shareInstall(iaccid) {
           // 点击，暂停
           downloadApp(loadStatus)
           isPause = true
-        } else if (loadStatus == 12 && isWifiShow) {
-          // 4g下点击，暂停
-          downloadApp(1)
-          isPause = true
+        // } else if (loadStatus == 12 && isWifiShow) {
+        //   // 4g下点击，暂停
+        //   downloadApp(1)
+        //   isPause = true
         } else if (loadStatus == 4 || loadStatus == 5 || loadStatus == 6) {
           // 网络错误，重试
           downloadApp(loadStatus)
           m.wakeupOrInstall()
         } else if (loadStatus == 12 || loadStatus == 11) {
-          downloadApp(1)
+          // downloadApp(1)
           m.wakeupOrInstall()
         } else {
           m.wakeupOrInstall()
@@ -681,10 +681,10 @@ function updateButtonStyle() {
       toast('网络不可用')
     } else if (_status == 12) {
       // 4G网络确实是否需要下载
-      if (!isWifiShow) {
+      // if (!isWifiShow) {
         alertWifi()
-      }
-      document.querySelector('.btn-orange-bg').style.width = loadProgress + '%'
+      // }
+      // document.querySelector('.btn-orange-bg').style.width = loadProgress + '%'
     }
   }
   if (_status == 8) {
