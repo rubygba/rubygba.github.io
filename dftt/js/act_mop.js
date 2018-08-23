@@ -622,7 +622,7 @@ function downloadApp(status, confirm) {
 
   window.downSuccess = function(res) {
     var data = JSON.parse(res)
-    // alert(res)
+    alert(res)
     loadStatus = data.status
     loadProgress = data.progress
     updateButtonStyle()
