@@ -1,0 +1,75 @@
+.btns .btn,
+.share-btn {
+  background-repeat: no-repeat
+}
+
+.btns {
+  margin: 0 .18rem;
+  margin-top: .26rem;
+  margin-bottom: .36rem;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap
+}
+
+.btns .btn {
+  width: 3.27rem;
+  height: 3.1rem;
+  -webkit-background-size: contain;
+  background-size: contain;
+  position: relative;
+  margin: 0 .1rem .1rem;
+  overflow: hidden
+}
+.btns img {
+  display: block;
+}
+.btns .btn-img {
+  margin: 0 .2rem .2rem;
+}
+.btns .btn.all-line {
+  width: 6.75rem;
+  height: 2.24rem;
+  margin: 0 .2rem .2rem;
+  -webkit-background-size: cover;
+  background-size: cover
+}
+
+.share-btn {
+  color: #dd2520;
+  position: fixed;
+  top: 3.17rem;
+  right: 0;
+  width: .97rem;
+  font-weight: 700;
+  line-height: .53rem;
+  height: .53rem;
+  font-size: .53rem;
+  font-size: .28rem;
+  text-align: center;
+  z-index: 20;
+  background-image: url(../images/share.png);
+  -webkit-background-size: contain;
+  background-size: contain
+}
+
+
+.copyright {
+  color: #fff;
+  opacity: .6;
+  text-align: center;
+  line-height: .28rem;
+  font-size: .28rem;
+  height: .3rem;
+  margin-top: .36rem;
+  margin-bottom: 1.6rem
+}
