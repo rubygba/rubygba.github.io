@@ -71,7 +71,7 @@
       <button class="back" type="button" @click="back"></button>
     </div>
     <!-- 换绑定 -->
-    <!-- <div v-else class="page-bind0 page-bindchange">
+    <div v-else class="page-bind0 page-bindchange">
       <input 
         class="phone"
         type="number" 
@@ -82,7 +82,7 @@
       <input class="password" type="text" name="psw" :value="b" placeholder="请输入验证码">
       <button class="button" :class="{'disable': cd}" type="button" @click="getCode">{{ cd }}s</button>
       <button class="submit" type="submit" @click="submit">提交</button>
-    </div> -->
+    </div>
 
     <div class="modal" v-if="isModal">
       <div class="mask">
@@ -135,6 +135,9 @@
         this.wxstate = this.getQueryString().state
         this.getCaptcha()
       },
+      mounted: function () {
+        this.getOpenid()
+      },
       methods: {
         getQueryString: function (name) {
           var FCKURLParams = {}
@@ -148,6 +151,23 @@
             FCKURLParams[ sParamName ] = sParamValue
           }
           return FCKURLParams;
+        },
+        getOpenid: function () {
+          let scope = this
+          fetch(this.baseUrl + '/api/v1/wechat?code=' + this.wxcode + '&state=' + this.wxstate, {
+            method: 'GET',
+            mode: 'cors'
+          })
+            .then(function (response) {
+              return response.text()
+            })
+            .then(function (body) {
+              console.log(body)
+              var json = JSON.parse(body)
+            })
+            .catch(function (e) {
+              console.error(e)
+            })
         },
         getCaptcha: function () {
           let scope = this
