@@ -126,7 +126,7 @@
       <div class="mask">
         <div class="diag">
           <p v-html="msg"></p>
-          <button @click.prevent="jump">返回</button>
+          <button @click.prevent="jump"><!--返回--></button>
         </div>
       </div>
     </div>
@@ -325,12 +325,23 @@
               console.log(body)
               var json = JSON.parse(body)
               if (json.ret == 0) {
-                scope.msg = '绑定成功！<br>获得兑换码如下（长按可复制）<br>【<span>'+ json.redeem +'</span>】'
-                scope.isModal = true
-                scope.storeLong('resbody', body)
-                scope.storeLong('resphone', scope.a)
-                scope.redeem = json.redeem
-                window.scrollTo(0, 0)
+                if (_method === 'POST') {
+                  scope.msg = '绑定成功！<br>获得兑换码如下（长按可复制）<br>【<span>'+ json.redeem +'</span>】'
+                  scope.isModal = true
+                  scope.storeLong('resbody', body)
+                  scope.storeLong('resphone', scope.a)
+                  scope.redeem = json.redeem
+                  window.scrollTo(0, 0)
+                } else if (_method === 'PUT') {
+                  scope.msg = '换绑成功！'
+                  scope.isModal = true
+                  // scope.storeLong('resbody', body)
+                  // scope.storeLong('resphone', scope.a)
+                  // scope.redeem = json.redeem
+                  window.scrollTo(0, 0)
+                } else {
+                  // ...
+                }
               } else if (json.ret == 1004) {
                 // 该手机号已绑定，请勿重复绑定。\n如需换绑，请点击“返回”填写新的手机号
                 scope.msg = '该手机号已绑定。'
