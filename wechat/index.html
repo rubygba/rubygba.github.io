@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>恋与制作人-绑定有礼</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="vue.min.js"></script>
+  <script src="promise.min.js"></script>
+  <script src="fetch.umd.js"></script>
+  <script src="js.cookie.min.js"></script>
+  <script>
+    !function(n, e) {
+      var t = n.documentElement
+      var i = 'orientationchange'in window ? 'orientationchange' : 'resize'
+      var o = function() {
+        var r = 1
+        var n = t.clientWidth
+        var e = 750
+        n && (t.style.fontSize = 100 * (n / e) + 'px')
+        setTimeout(function () {
+          r = parseFloat(getComputedStyle(t).fontSize) / parseFloat(t.style.fontSize)
+          r && (t.style.fontSize = 100 * (n / e) / r + 'px')
+        }, 0)
+      }
+      o(),
+      n.addEventListener && (e.addEventListener(i, o, !1), n.addEventListener('DOMContentLoaded', o, !1))
+    }(document, window)
+  </script>
+</head>
+<body>
+  <div class="wrap" id="app">
+    <div class="top"></div>
+    <div v-if="page === 0" class="page-bind0">
+      <div class="page-bind0-content">
+        <section>
+          <label for="">手机号</label>
+          <input 
+            class="phone"
+            type="number" 
+            name="phone"
+            placeholder="请输入手机号"
+            oninput="if (value.length > 11) value = value.slice(0, 11)"
+            v-model.number="a">
+        </section>
+        <section>
+          <label for="">图形码</label>
+          <input
+            class="captcha"
+            type="text"
+            v-model="answer"
+            oninput="if (value.length > 4) value = value.slice(0, 4)"
+            placeholder="图形验证码">
+          <img :src="b64" class="captchaimg" alt="" @click="getCaptcha">
+        </section>
+        <section>
+          <label for="">验证码</label>
+          <input class="password" type="text" name="psw" v-model="b"
+            oninput="if (value.length > 6) value = value.slice(0, 6)"
+            placeholder="请输入验证码">
+          <button class="button" :class="{'disable': cd}" type="button" @click="getCode">{{ cd }}s</button>
+        </section>
+        <button class="submit" :class="{'loading': isLoading}" type="submit" @click="submit">Loading..</button>
+      </div>
+    </div>
+    <!-- 已绑定 -->
+    <div v-else-if="page === 1" class="page-binded">
+      <p class="p1">{{ a }}</p>
+      <p class="p2">{{ redeem }}</p>
+      <button class="back" type="button" @click="back"></button>
+    </div>
+    <!-- 换绑定 -->
+    <!-- <div v-else class="page-bind0 page-bindchange">
+      <input 
+        class="phone"
+        type="number" 
+        name="phone"
+        placeholder="请输入手机号"
+        oninput="if (value.length > 11) value = value.slice(0, 11)"
+        v-model.number="a">
+      <input class="password" type="text" name="psw" :value="b" placeholder="请输入验证码">
+      <button class="button" :class="{'disable': cd}" type="button" @click="getCode">{{ cd }}s</button>
+      <button class="submit" type="submit" @click="submit">提交</button>
+    </div> -->
+
+    <div class="modal" v-if="isModal">
+      <div class="mask">
+        <div class="diag">
+          <p v-html="msg"></p>
+          <button @click.prevent="jump">返回</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img src="https://evolwechat.papegames.com/evolwechat/img/wx_alert.png" style="display: none" alt="">
+
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        page: 0,
+        isModal: false,
+        msg: '绑定成功！<br>获得兑换码如下（长按可复制）<br>【xxx】',
+        a: '',
+        b: '',
+        cd: 0,
+        b64: '',
+        isCaptcha: false,
+        captchaToken: '',
+        answer: '',
+        isCD: false,
+        isLoading: false,
+        // baseUrl: 'https://wechat1.papegames.com',
+        baseUrl: 'http://47.111.173.147:3000',
+        redeem: '',
+
+        wxcode: '',
+        wxstate: ''
+      },
+      created: function () {
+        var resbody = this.getStore('resbody')
+        var resphone = this.getStore('resphone')
+        if (resbody) {
+          try {
+            var t = JSON.parse(resbody)
+            this.redeem = t.redeem
+            this.a = resphone
+            this.page = 1
+          } catch(e) {
+            console.error(e)
+          }
+        }
+        this.wxcode = this.getQueryString().code
+        this.wxstate = this.getQueryString().state
+        this.getCaptcha()
+      },
+      methods: {
+        getQueryString: function (name) {
+          var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+          var r = window.location.search.substr(1).match(reg);
+          if (r != null) {
+            return unescape(r[2]);
+          }
+          return null;
+        },
+        getCaptcha: function () {
+          let scope = this
+          if (scope.isCaptcha) {
+            return
+          }
+          scope.isCaptcha = true
+          fetch(this.baseUrl + '/api/v1/captcha', {
+            method: 'POST',
+            mode: 'cors'
+          })
+            .then(function (response) {
+              return response.text()
+            })
+            .then(function (body) {
+              console.log(body)
+              var json = JSON.parse(body)
+              scope.b64 = json.img
+              scope.isCaptcha = false
+              scope.captchaToken = json.token
+            })
+            .catch(function (e) {
+              scope.isCaptcha = false
+              console.error(e)
+            })
+        },
+        getCode: function () {
+          if (this.cd) {
+            return
+          } else if (!(/^1[34578]\d{9}$/.test(this.a))) {
+            alert('手机号码有误，请重填')
+            return
+          } else if (!this.answer) {
+            alert('请输入图像码')
+            return
+          } else {
+            // this.startCD()
+          }
+
+          let scope = this
+          fetch(this.baseUrl + '/api/v1/phone/'+ this.a +'/token?token='+this.captchaToken+'&answer='+this.answer, {
+            method: 'POST',
+            mode: 'cors'
+          })
+            .then(function (response) {
+              return response.text()
+            })
+            .then(function (body) {
+              console.log(body)
+              var json = JSON.parse(body)
+              if (json.ret == 0) {
+                scope.startCD()
+              }
+              alert(json.msg)
+            })
+            .catch(function (e) {
+              console.error(e)
+            })
+        },
+        startCD: function() {
+          this.cd = 59
+          if (!this.isCD) {
+            this.isCD = true
+            setInterval(function () {
+              console.log(this.cd)
+              if (this.cd > 1) {
+                this.cd--
+              } else {
+                this.cd = 0
+              }
+            }.bind(this), 1000)
+          }
+        },
+        submit: function () {
+          var scope = this
+          if (this.isLoading) {
+            return
+          } else if (!(/^1[34578]\d{9}$/.test(this.a))) {
+            alert('手机号码有误，请重填')
+            return
+          } else if (!this.b) {
+            alert('请输入验证码')
+            return
+          }
+          this.isLoading = true
+
+          // fetch(this.baseUrl + '/api/v1/phone/'+ this.a +'/tokenredeem?code=' + this.b, {
+          fetch(this.baseUrl + '/api/v1/phone/'+ this.a +'/wehcat?code='+ this.wxcode +'&state='+ this.wxstate +'&redeem=' + this.b, {
+            method: 'POST',
+            mode: 'cors'
+          })
+            .then(function (response) {
+              return response.text()
+            })
+            .then(function (body) {
+              console.log(body)
+              var json = JSON.parse(body)
+              if (json.ret == 0) {
+                scope.msg = '绑定成功！<br>获得兑换码如下（长按可复制）<br>【<span>'+ json.redeem +'</span>】'
+                scope.isModal = true
+                scope.storeLong('resbody', body)
+                scope.storeLong('resphone', scope.a)
+                scope.redeem = json.redeem
+                window.scrollTo(0, 0)
+              } else if (json.ret == 1004) {
+                // 该手机号已绑定，请勿重复绑定。\n如需换绑，请点击“返回”填写新的手机号
+                scope.msg = '该手机号已绑定。'
+                scope.isModal = true
+                scope.storeLong('resbody', body)
+                scope.storeLong('resphone', scope.a)
+                scope.redeem = json.redeem
+                window.scrollTo(0, 0)
+              } else {
+                alert(json.msg)
+              }
+              scope.isLoading = false
+            })
+            .catch(function (e) {
+              console.error(e)
+              scope.isLoading = false
+            })
+        },
+        back: function () {
+          this.page = 0
+          this.a = ''
+        },
+        storeLong: function (key, value) {
+          if ((typeof value === 'string') || (typeof value === 'number')) {
+            Cookies.set(key, value, { expires: 365 })
+            localStorage[key] = value
+          }
+        },
+        getStore: function (key) {
+          var result = Cookies.get(key) || localStorage[key] || ''
+          return result
+        },
+        jump: function () {
+          this.page = 1
+          this.isModal = false
+        }
+      }
+    })
+  </script>
+</body>
+</html>

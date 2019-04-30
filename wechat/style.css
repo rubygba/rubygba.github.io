@@ -1,0 +1,520 @@
+/* My css strap */
+
+/* Reset HTML5 */
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%
+}
+body {
+  margin: 0;
+  font-size: 14px;
+  font-family: Helvetica Neue, Helvetica, STHeiTi, Arial, sans-serif
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block
+}
+audio:not([controls]) {
+  display: none;
+  height: 0
+}
+progress {
+  vertical-align: baseline
+}
+[hidden], template {
+  display: none
+}
+a {
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+  text-decoration: none
+}
+a:active, a:hover {
+  outline-width: 0
+}
+abbr[title] {
+  text-decoration: underline;
+  text-decoration: underline dotted
+}
+b, strong {
+  font-weight: bolder
+}
+dfn {
+  font-style: italic
+}
+small {
+  font-size: 80%
+}
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline
+}
+sup {
+  top: -.5em
+}
+sub {
+  bottom: -.25em
+}
+img {
+  border-style: none
+}
+svg:not(:root) {
+  overflow: hidden
+}
+code, kbd, pre, samp {
+  font-family: monospace;
+  font-size: 1em
+}
+pre {
+  overflow: auto;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word
+}
+button, input, optgroup, select, textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  outline: none;
+  vertical-align: middle
+}
+button, input {
+  overflow: visible
+}
+button, select {
+  text-transform: none
+}
+button {
+  border: none;
+  outline: none;
+}
+button:focus {
+  outline: none;
+}
+[type=reset], [type=submit], button, html [type=button] {
+  -webkit-appearance: button
+}
+[disabled] {
+  cursor: default
+}
+[type=checkbox], [type=radio] {
+  box-sizing: border-box;
+  padding: 0
+}
+[type=number]::-webkit-inner-spin-button, [type=number]::-webkit-outer-spin-button {
+  height: auto
+}
+[type=search] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px
+}
+[type=search]::-webkit-search-cancel-button, [type=search]::-webkit-search-decoration {
+  -webkit-appearance: none
+}
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit
+}
+textarea {
+  overflow: auto;
+  resize: none;
+  vertical-align: top
+}
+optgroup {
+  font-weight: 700
+}
+input, select, textarea {
+  outline: 0
+}
+input, textarea {
+  -webkit-user-modify: read-write-plaintext-only
+}
+input::-ms-clear, input::-ms-reveal {
+  display: none
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+  color: inherit;
+  opacity: .54
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: inherit;
+  opacity: .54
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0
+}
+td, th {
+  padding: 0
+}
+blockquote, figure, form, h1, h2, h3, h4, h5, h6, p {
+  margin: 0
+}
+dd, dl, li, ol, ul {
+  margin: 0;
+  padding: 0
+}
+ol, ul {
+  list-style: none outside none
+}
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: 400;
+  line-height: 2
+}
+
+
+/* 统一盒模型 */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box
+}
+
+
+/* common layout */
+.width-1 {
+  width: 8.33%
+}
+.width15 {
+  width: 12.5%
+}
+.width-2 {
+  width: 16.66%
+}
+.width25 {
+  width: 20.83%
+}
+.width-3 {
+  width: 24.99%
+}
+.width-4 {
+  width: 33.33%
+}
+.width-5 {
+  width: 41.66%
+}
+.width-6 {
+  width: 50%
+}
+.width-7 {
+  width: 58.33%
+}
+.width-8 {
+  width: 66.66%
+}
+.width-9 {
+  width: 75%
+}
+.width-10 {
+  width: 83.33%
+}
+.width-11 {
+  width: 91.66%
+}
+.width-12 {
+  width: 100%
+}
+
+.txt-0 {
+  font-size: 0;
+  -webkit-text-size-adjust:none
+}
+
+.txt-ellip {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+
+.inline-block {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 14px
+}
+
+.float-left {
+  float: left!important;
+}
+.float-right {
+  float: right!important;
+}
+
+ul.float-row>li {
+  float: left
+}
+
+.offset-1 {
+  padding-left: 10px
+}
+.offset15 {
+  padding-left: 15px
+}
+.offset-2 {
+  padding-left: 20px
+}
+
+
+.bg-cross {
+  position: absolute;
+  z-index: -2;
+  height: 200px;
+  /*background: url("bg-min.jpg") no-repeat scroll center top;*/
+}
+
+.txt-center {
+  text-align: center
+}
+.txt-left {
+  text-align: left
+}
+.txt-right {
+  text-align: right
+}
+
+.txt-black {
+  color: #000
+}
+.txt-gray {
+  color: #666
+}
+.txt-red {
+  color: #c00
+}
+
+.txt-bold {
+  font-weight: bold
+}
+
+/* 组件components */
+.hr-dashed {
+  margin: 0;
+  border: 0; /* reset */
+  border-top: 1px dashed #f0f0f0
+}
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden
+}
+.clearfix {
+  *+height: 1%
+}
+
+body {
+  font-family: "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", "Microsoft Yahei", "Helvetica Neue",Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.wrap {
+  width: 100%;
+  height: 100%;
+  min-height: 13.34rem;
+  max-height: 15rem;
+  padding-top: 5.31rem;
+  background: url('https://evolwechat.papegames.com/evolwechat/img/top-min.jpg') no-repeat center top;
+  background-size: 7.5rem auto;
+}
+
+button {
+  /* border: none;
+  background-color: transparent;
+  color: transparent; */
+}
+input {
+  background-color: transparent;
+  border: .04rem solid #bcb9bf;
+  line-height: .52rem;
+  outline: none;
+  color: rgba(107, 102, 112, 0.5);
+  padding-left: .1rem;
+}
+
+.page-bind0 {
+  width: 100%;
+  height: 100%;
+  background: url('./img/bind-bg.jpg') no-repeat center top;
+  background-size: 7.5rem auto;
+  position: relative;
+  transition: all .5s ease;
+  padding-top: 2.96rem;
+}
+.page-bind0-content {
+  background: url('./img/bind-bg2.png') no-repeat center top;
+  background-size: 100% 100%;
+  padding: .45rem 0;
+  padding-left: .9rem;
+  position: relative;
+  color: #bcb9bf;
+  font-size: .28rem;
+}
+.page-bind0-content section {
+  margin-bottom: .28rem;
+}
+.page-bind0-content label {
+  margin-right: .24rem;
+  vertical-align: middle;
+}
+.page-bind0 .phone {
+  width: 4.6rem;
+  font-size: .26rem;
+}
+.page-bind0 .captcha {
+  font-size: .26rem;
+  width: 2.44rem;
+  margin-right: .22rem;
+}
+.page-bind0 .captchaimg {
+  width: 1.82rem;
+  vertical-align: middle;
+}
+.page-bind0 .password {
+  width: 2.44rem;
+  font-size: .26rem;
+  margin-right: .16rem;
+}
+.page-bind0 .button {
+  width: 1.96rem;
+  height: .56rem;
+  font-size: .28rem;
+  line-height: .4rem;
+  background: url('img/btn-get.png') no-repeat center;
+  background-size: 100% 100%;
+  text-overflow: hidden;
+  text-indent: 1000px;
+}
+.page-bind0 .button.disable {
+  text-indent: initial;
+  background: #79aeee;
+  color: #f4f4f4;
+  letter-spacing: .01rem;
+}
+.page-bind0 .submit {
+  width: 5.81rem;
+  height: .8rem;
+  opacity: 1;
+  overflow: hidden;
+  text-overflow: hidden;
+  text-indent: 1000px;
+  background: url('img/btn-submit.png') no-repeat center;
+  background-size: contain;
+}
+.page-bind0 .submit.loading {
+  background: #fe879e;
+  height: .76rem;
+  content: 'loading';
+  text-indent: 0;
+  font-size: .26rem;
+  color: #f2f2f2;
+}
+
+.page-binded {
+  width: 100%;
+  height: 100%;
+  background: url('https://evolwechat.papegames.com/evolwechat/img/binded-min.jpg') no-repeat center top;
+  background-size: 7.5rem auto;
+  position: relative;
+  transition: all .5s ease;
+}
+.page-binded p {
+  position: absolute;
+  left: 4.05rem;
+  top: .35rem;
+  font-size: .24rem;
+  color: #9a4b4b;
+  width: 1.56rem;
+  text-align: center;
+}
+.page-binded .p1 {
+  user-select: none;
+  -webkit-user-select: none;
+}
+.page-binded .p2 {
+  user-select: initial;
+  -webkit-user-select: initial;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 2rem;
+  font-size: .28rem;
+  color: #9a4b4b;
+  width: auto;
+}
+.page-binded .back {
+  position: absolute;
+  left: 1rem;
+  top: 3.06rem;
+  width: 5.5rem;
+  height: .7rem;
+  background: transparent;
+}
+
+.page-bindchange {
+  background-image: url('https://evolwechat.papegames.com/evolwechat/img/bindchange-min.jpg');
+}
+
+.modal .mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .35);
+}
+.modal .diag {
+  width: 7.08rem;
+  height: 4.74rem;
+  margin: 0 auto;
+  font-size: .3rem;
+  color: #6b6670;
+  margin-top: 4rem;
+  background: url('https://evolwechat.papegames.com/evolwechat/img/wx_alert.png') no-repeat top center;
+  background-size: contain;
+  text-align: center;
+  position: relative;
+}
+.modal .diag p {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  line-height: 1.54;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.modal .diag p {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  line-height: 1.54;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+.modal .diag p span {
+  user-select: initial;
+  -webkit-user-select: initial;
+}
+.modal .diag button {
+  position: absolute;
+  bottom: .8rem;
+  left: 2.4rem;
+  width: 2.26rem;
+  height: 1rem;
+}
