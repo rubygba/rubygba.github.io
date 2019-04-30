@@ -77,7 +77,7 @@
       <button class="back" type="button" @click="back"></button>
     </div>
     <!-- 换绑定 -->
-    <div v-else class="page-bind0 page-bindchange">
+    <!-- <div v-else class="page-bind0 page-bindchange">
       <input 
         class="phone"
         type="number" 
@@ -88,7 +88,7 @@
       <input class="password" type="text" name="psw" :value="b" placeholder="请输入验证码">
       <button class="button" :class="{'disable': cd}" type="button" @click="getCode">{{ cd }}s</button>
       <button class="submit" type="submit" @click="submit">提交</button>
-    </div>
+    </div> -->
 
     <div class="modal" v-if="isModal">
       <div class="mask">
@@ -121,6 +121,7 @@
         baseUrl: 'http://47.111.173.147:3000',
         redeem: '',
 
+        openid: null,
         wxcode: '',
         wxstate: ''
       },
@@ -170,6 +171,19 @@
             .then(function (body) {
               console.log(body)
               var json = JSON.parse(body)
+              if (json.ret === 1004) {
+                // 未绑定手机
+                scope.openid = json.openid
+              } else {
+                // ret === 0
+                // 已绑定手机
+                scope.openid = json.openid
+                scope.a = json.ph
+                scope.page = 1
+                scope.storeLong('resbody', body)
+                scope.storeLong('resphone', scope.a)
+                scope.redeem = json.redeem
+              }
             })
             .catch(function (e) {
               console.error(e)
@@ -260,8 +274,7 @@
           }
           this.isLoading = true
 
-          // fetch(this.baseUrl + '/api/v1/phone/'+ this.a +'/tokenredeem?code=' + this.b, {
-          fetch(this.baseUrl + '/api/v1/phone/'+ this.a +'/wechat?code='+ this.wxcode +'&state='+ this.wxstate +'&token=' + this.b, {
+          fetch(this.baseUrl + '/api/v1/phone/'+ this.a +'/wechat?openid='+ this.openid +'&token=' + this.b, {
             method: 'POST',
             mode: 'cors'
           })
