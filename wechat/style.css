@@ -468,7 +468,22 @@ input {
 }
 
 .page-bindchange {
-  background-image: url('https://evolwechat.papegames.com/evolwechat/img/bindchange-min.jpg');
+  /* background-image: url('https://evolwechat.papegames.com/evolwechat/img/bindchange-min.jpg');
+  height: 2.96rem;
+  overflow: visible; */
+  position: relative;
+}
+.page-bindchange::before {
+  display: block;
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.96rem;
+  overflow: hidden;
+  background: url('https://evolwechat.papegames.com/evolwechat/img/bindchange-min.jpg') no-repeat center top;
+  background-size: 7.5rem auto;
 }
 
 .modal .mask {

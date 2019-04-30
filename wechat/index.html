@@ -77,6 +77,38 @@
       <button class="back" type="button" @click="back"></button>
     </div>
     <!-- 换绑定 -->
+    <div v-else class="page-bind0  page-bindchange">
+      <div class="page-bind0-content">
+        <section>
+          <label for="">手机号</label>
+          <input 
+            class="phone"
+            type="number" 
+            name="phone"
+            placeholder="请输入手机号"
+            oninput="if (value.length > 11) value = value.slice(0, 11)"
+            v-model.number="a">
+        </section>
+        <section>
+          <label for="">图形码</label>
+          <input
+            class="captcha"
+            type="text"
+            v-model="answer"
+            oninput="if (value.length > 4) value = value.slice(0, 4)"
+            placeholder="图形验证码">
+          <img :src="b64" class="captchaimg" alt="" @click="getCaptcha">
+        </section>
+        <section>
+          <label for="">验证码</label>
+          <input class="password" type="text" name="psw" v-model="b"
+            oninput="if (value.length > 6) value = value.slice(0, 6)"
+            placeholder="请输入验证码">
+          <button class="button" :class="{'disable': cd}" type="button" @click="getCode">{{ cd }}s</button>
+        </section>
+        <button class="submit" :class="{'loading': isLoading}" type="submit" @click="submit">Loading..</button>
+      </div>
+    </div>
     <!-- <div v-else class="page-bind0 page-bindchange">
       <input 
         class="phone"
@@ -133,7 +165,9 @@
             var t = JSON.parse(resbody)
             this.redeem = t.redeem
             this.a = resphone
-            this.page = 1
+            if (this.redeem) {
+              this.page = 1
+            }
           } catch(e) {
             console.error(e)
           }
@@ -174,15 +208,16 @@
               if (json.ret === 1004) {
                 // 未绑定手机
                 scope.openid = json.openid
-              } else {
-                // ret === 0
+              } else if (json.ret === 0) {
                 // 已绑定手机
                 scope.openid = json.openid
-                scope.a = json.ph
+                scope.a = json.phone
                 scope.page = 1
                 scope.storeLong('resbody', body)
                 scope.storeLong('resphone', scope.a)
                 scope.redeem = json.redeem
+              } else {
+                alert(json.msg || json.ret)
               }
             })
             .catch(function (e) {
@@ -273,9 +308,14 @@
             return
           }
           this.isLoading = true
+          var _method = 'POST'
+          if (this.page === 2) {
+            // 更换绑定
+            _method = 'PUT'
+          }
 
           fetch(this.baseUrl + '/api/v1/phone/'+ this.a +'/wechat?openid='+ this.openid +'&token=' + this.b, {
-            method: 'POST',
+            method: _method,
             mode: 'cors'
           })
             .then(function (response) {
@@ -310,7 +350,7 @@
             })
         },
         back: function () {
-          this.page = 0
+          this.page = 2
           this.a = ''
         },
         storeLong: function (key, value) {
