@@ -329,6 +329,7 @@ body {
   padding-top: 5.31rem;
   background: url('https://evolwechat.papegames.com/evolwechat/img/top-min.jpg') no-repeat center top;
   background-size: 7.5rem auto;
+  overflow: hidden;
 }
 
 button {
@@ -397,6 +398,7 @@ input {
   background-size: 100% 100%;
   text-overflow: hidden;
   text-indent: 1000px;
+  overflow: hidden;
 }
 .page-bind0 .button.disable {
   text-indent: initial;
@@ -411,6 +413,7 @@ input {
   overflow: hidden;
   text-overflow: hidden;
   text-indent: 1000px;
+  overflow: hidden;
   background: url('img/btn-submit.png') no-repeat center;
   background-size: contain;
 }
